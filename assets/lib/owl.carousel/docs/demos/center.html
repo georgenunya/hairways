@@ -168,7 +168,7 @@
           <p>Add center to setup:</p>
           <pre><code>center:true</code></pre>
           <h3 id="setup">Setup</h3>
-          <pre><code>£(&#39;.loop&#39;).owlCarousel({
+          <pre><code>$(&#39;.loop&#39;).owlCarousel({
     center: true,
     items:2,
     loop:true,
@@ -179,7 +179,7 @@
         }
     }
 });
-£(&#39;.nonloop&#39;).owlCarousel({
+$(&#39;.nonloop&#39;).owlCarousel({
     center: true,
     items:2,
     loop:false,
@@ -191,8 +191,8 @@
     }
 });</code></pre>
           <script>
-            jQuery(document).ready(function(£) {
-              £('.loop').owlCarousel({
+            jQuery(document).ready(function($) {
+              $('.loop').owlCarousel({
                 center: true,
                 items: 2,
                 loop: true,
@@ -203,7 +203,7 @@
                   }
                 }
               });
-              £('.nonloop').owlCarousel({
+              $('.nonloop').owlCarousel({
                 center: true,
                 items: 2,
                 loop: false,

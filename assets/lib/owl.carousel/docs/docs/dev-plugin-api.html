@@ -117,10 +117,10 @@
  * Plugin Name
  * @since 2.0.0
  */
-;(function ( £, window, document, undefined ) {
+;(function ( $, window, document, undefined ) {
     PluginName = function(scope){
         this.owl = scope;
-        this.owl._options = £.extend(PluginName.Defaults, this.owl.options);
+        this.owl._options = $.extend(PluginName.Defaults, this.owl.options);
         //link callback events with owl carousel here
     }
     PluginName.Defaults = {
@@ -134,7 +134,7 @@
     AutoHeight.prototype.destroy = function(){
         //events here
     };
-    £.fn.owlCarousel.Constructor.Plugins[&#39;pluginName&#39;] = PluginName;
+    $.fn.owlCarousel.Constructor.Plugins[&#39;pluginName&#39;] = PluginName;
 })( window.Zepto || window.jQuery, window,  document );</code></pre>
           </article>
         </div>

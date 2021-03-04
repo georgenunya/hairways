@@ -112,28 +112,28 @@
             <blockquote>
               <p>Events are provided by Owl Carousel in strategic code locations. This gives you the ability to listen for any changes and perform your own actions.</p>
             </blockquote>
-            <pre><code>var owl = £(&#39;.owl-carousel&#39;);
+            <pre><code>var owl = $(&#39;.owl-carousel&#39;);
 owl.owlCarousel();
 // Listen to owl events:
 owl.on(&#39;changed.owl.carousel&#39;, function(event) {
     ...
 })</code></pre>
             <p>You could also trigger events by yourself to control Owl Carousel:</p>
-            <pre><code>var owl = £(&#39;.owl-carousel&#39;);
+            <pre><code>var owl = $(&#39;.owl-carousel&#39;);
 owl.owlCarousel();
 // Go to the next item
-£(&#39;.customNextBtn&#39;).click(function() {
+$(&#39;.customNextBtn&#39;).click(function() {
     owl.trigger(&#39;next.owl.carousel&#39;);
 })
 // Go to the previous item
-£(&#39;.customPrevBtn&#39;).click(function() {
+$(&#39;.customPrevBtn&#39;).click(function() {
     // With optional speed parameter
     // Parameters has to be in square bracket &#39;[]&#39;
     owl.trigger(&#39;prev.owl.carousel&#39;, [300]);
 })</code></pre>
             <h3 id="callbacks">Callbacks</h3>
             <p>Instead of attaching an event handler you can also just add a callback to the options of Owl Carousel.</p>
-            <pre><code>£(&#39;.owl-carousel&#39;).owlCarousel({
+            <pre><code>$(&#39;.owl-carousel&#39;).owlCarousel({
     onDragged: callback
 });
 function callback(event) {

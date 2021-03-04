@@ -255,7 +255,7 @@
     "name": "fallbackEasing",
     "type": "String",
     "Default": "swing",
-    "desc": "Easing for CSS2 £.animate."
+    "desc": "Easing for CSS2 $.animate."
   },
   {
     "name": "info",

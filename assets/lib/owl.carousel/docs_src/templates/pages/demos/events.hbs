@@ -80,9 +80,9 @@ this callback.
 {{/markdown }}
 
 <script>
-	jQuery(document).ready(function (£) {
+	jQuery(document).ready(function ($) {
 
-		var owl = £('.owl-carousel');
+		var owl = $('.owl-carousel');
 
 		owl.on('initialize.owl.carousel initialized.owl.carousel ' +
 			'initialize.owl.carousel initialize.owl.carousel ' +
@@ -92,12 +92,12 @@ this callback.
 			'drag.owl.carousel dragged.owl.carousel ' +
 			'translate.owl.carousel translated.owl.carousel ' +
 			'to.owl.carousel changed.owl.carousel', function (e) {
-				£('.' + e.type)
+				$('.' + e.type)
 					.removeClass('secondary')
 					.addClass('success');
 
 				window.setTimeout(function () {
-					£('.' + e.type)
+					$('.' + e.type)
 						.removeClass('success')
 						.addClass('secondary');
 				}, 500);

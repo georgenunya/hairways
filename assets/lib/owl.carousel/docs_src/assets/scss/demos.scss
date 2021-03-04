@@ -3,7 +3,7 @@
     margin: 2rem 0;
     .item {
       height: 10rem;
-      background: #4dc7a0; // £owl-success-color;
+      background: #4dc7a0; // $owl-success-color;
       padding: 1rem;
       h4 {
         color: #fff;
@@ -26,7 +26,7 @@
   }
 }
 
-@media #{£small-up} {
+@media #{$small-up} {
   .demo-list {
     [class*="column"] + [class*="column"]:last-child {
       float: left;

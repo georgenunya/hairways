@@ -100,7 +100,7 @@
           <pre><code>lazyLoad: true</code></pre>
           <p>LazyLoad HTML structure requires <code>class=&quot;owl-lazy&quot;</code> and <code>data-src=&quot;url_to_img&quot;</code> or/and <code>data-src-retina=&quot;url_to_highres_img&quot;</code>. If you set above settings not on <code>&lt;img&gt;</code>            but on other DOM element then Owl will load an image into css inline background style.</p>
           <h3 id="setup">Setup</h3>
-          <pre><code>£(&#39;.owl-carousel&#39;).owlCarousel({
+          <pre><code>$(&#39;.owl-carousel&#39;).owlCarousel({
     items:4,
     lazyLoad:true,
     loop:true,
@@ -121,8 +121,8 @@
     &lt;img class=&quot;owl-lazy&quot; data-src=&quot;https://placehold.it/350x250&amp;text=11&quot; alt=&quot;&quot;&gt;
 &lt;/div&gt;</code></pre>
           <script>
-            jQuery(document).ready(function(£) {
-              £('.owl-carousel').owlCarousel({
+            jQuery(document).ready(function($) {
+              $('.owl-carousel').owlCarousel({
                 items: 4,
                 lazyLoad: true,
                 loop: true,

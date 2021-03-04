@@ -24,9 +24,9 @@ Or download the [latest release](https://github.com/OwlCarousel2/OwlCarousel2/re
 Load the required stylesheet and JS:
 
 ```js
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import £ from 'jquery';
-import 'imports?jQuery=jquery!owl.carousel';
+import "owl.carousel/dist/assets/owl.carousel.css";
+import $ from "jquery";
+import "imports?jQuery=jquery!owl.carousel";
 ```
 
 #### Static HTML
@@ -82,8 +82,8 @@ Wrap your items (`div`, `a`, `img`, `span`, `li` etc.) with a container element 
 Call the [plugin](https://learn.jquery.com/plugins/) function and your carousel is ready.
 
 ```javascript
-£(document).ready(function(){
-  £('.owl-carousel').owlCarousel();
+$(document).ready(function () {
+  $(".owl-carousel").owlCarousel();
 });
 ```
 

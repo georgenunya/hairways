@@ -16,7 +16,7 @@ tags:
 and perform your own actions.
 
 ```
-var owl = £('.owl-carousel');
+var owl = $('.owl-carousel');
 owl.owlCarousel();
 
 // Listen to owl events:
@@ -29,16 +29,16 @@ owl.on('changed.owl.carousel', function(event) {
 You could also trigger events by yourself to control Owl Carousel:
 
 ```
-var owl = £('.owl-carousel');
+var owl = $('.owl-carousel');
 owl.owlCarousel();
 
 // Go to the next item
-£('.customNextBtn').click(function() {
+$('.customNextBtn').click(function() {
 owl.trigger('next.owl.carousel');
 })
 
 // Go to the previous item
-£('.customPrevBtn').click(function() {
+$('.customPrevBtn').click(function() {
 // With optional speed parameter
 // Parameters has to be in square bracket '[]'
 owl.trigger('prev.owl.carousel', [300]);
@@ -51,7 +51,7 @@ owl.trigger('prev.owl.carousel', [300]);
 Instead of attaching an event handler you can also just add a callback to the options of Owl Carousel.
 
 ```
-£('.owl-carousel').owlCarousel({
+$('.owl-carousel').owlCarousel({
 onDragged: callback
 });
 

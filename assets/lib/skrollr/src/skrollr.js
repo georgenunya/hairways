@@ -62,17 +62,17 @@
   //The property which will be added to the DOM element to hold the ID of the skrollable.
   var SKROLLABLE_ID_DOM_PROPERTY = "___skrollable_id";
 
-  var rxTouchIgnoreTags = /^(?:input|textarea|button|select)£/i;
+  var rxTouchIgnoreTags = /^(?:input|textarea|button|select)$/i;
 
-  var rxTrim = /^\s+|\s+£/g;
+  var rxTrim = /^\s+|\s+$/g;
 
   //Find all data-attributes. data-[_constant]-[offset]-[anchor]-[anchor].
-  var rxKeyframeAttribute = /^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|end|top|center|bottom))?(?:-?(top|center|bottom))?£/;
+  var rxKeyframeAttribute = /^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|end|top|center|bottom))?(?:-?(top|center|bottom))?$/;
 
-  var rxPropValue = /\s*(@?[\w\-\[\]]+)\s*:\s*(.+?)\s*(?:;|£)/gi;
+  var rxPropValue = /\s*(@?[\w\-\[\]]+)\s*:\s*(.+?)\s*(?:;|$)/gi;
 
   //Easing function names follow the property in square brackets.
-  var rxPropEasing = /^(@?[a-z\-]+)\[(\w+)\]£/;
+  var rxPropEasing = /^(@?[a-z\-]+)\[(\w+)\]$/;
 
   var rxCamelCase = /-([a-z0-9_])/g;
   var rxCamelCaseFn = function (str, letter) {
@@ -454,7 +454,7 @@
         var offset = match[2];
 
         //Is it a percentage offset?
-        if (/p£/.test(offset)) {
+        if (/p$/.test(offset)) {
           kf.isPercentage = true;
           kf.offset = (offset.slice(0, -1) | 0) / 100;
         } else {
@@ -1677,7 +1677,7 @@
         value = value.call(_instance);
       }
       //Percentage offset.
-      else if (/p£/.test(value)) {
+      else if (/p$/.test(value)) {
         value = (value.slice(0, -1) / 100) * viewportHeight;
       }
 

@@ -73,7 +73,7 @@ Animate functions work only with one item and only in browsers that support pers
 3. Set `animateOut` and `animateIn` options with the style names you picked.
 
 ```
-£('.custom1').owlCarousel({
+$('.custom1').owlCarousel({
 animateOut: 'slideOutDown',
 animateIn: 'flipInX',
 items:1,
@@ -193,16 +193,16 @@ opacity: 0;
 
 <link rel="stylesheet" href="{{assets}}/css/animate.css">
 <script>
-	jQuery(document).ready(function (£) {
+	jQuery(document).ready(function ($) {
 
-		£('.fadeOut').owlCarousel({
+		$('.fadeOut').owlCarousel({
 			items: 1,
 			animateOut: 'fadeOut',
 			loop: true,
 			margin: 10,
 		});
 
-		£('.custom1').owlCarousel({
+		$('.custom1').owlCarousel({
 			animateOut: 'slideOutDown',
 			animateIn: 'flipInX',
 			items: 1,

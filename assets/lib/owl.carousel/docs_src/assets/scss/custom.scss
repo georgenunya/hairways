@@ -1,23 +1,23 @@
-£owl-primary-color: #1ccacd;
-£owl-success-color: #ff3f4d;
-£owl-gray-color: #f7f7f7;
+$owl-primary-color: #1ccacd;
+$owl-success-color: #ff3f4d;
+$owl-gray-color: #f7f7f7;
 
-£medium-down: "#{£screen} and (max-width:#{lower-bound(£medium-range)})" !default;
+$medium-down: "#{$screen} and (max-width:#{lower-bound($medium-range)})" !default;
 
 /* Custom mixins */
 
-@mixin owl-transition(£p: all, £t: 300ms) {
-  -webkit-transition: £p £t ease-in-out;
-  -moz-transition: £p £t ease-in-out;
-  -ms-transition: £p £t ease-in-out;
-  -o-transition: £p £t ease-in-out;
-  transition: £p £t ease-in-out;
+@mixin owl-transition($p: all, $t: 300ms) {
+  -webkit-transition: $p $t ease-in-out;
+  -moz-transition: $p $t ease-in-out;
+  -ms-transition: $p $t ease-in-out;
+  -o-transition: $p $t ease-in-out;
+  transition: $p $t ease-in-out;
 }
 
-@mixin owl-radius(£r: 3px) {
-  -webkit-border-radius: £r;
-  -moz-border-radius: £r;
-  border-radius: £r;
+@mixin owl-radius($r: 3px) {
+  -webkit-border-radius: $r;
+  -moz-border-radius: $r;
+  border-radius: $r;
 }
 
 /* Header */
@@ -76,13 +76,13 @@
       .download {
         width: 1rem;
         height: 1rem;
-        background: £owl-success-color;
+        background: $owl-success-color;
         display: block;
         position: absolute;
         top: 1rem;
         right: 0;
         border: 2px solid #fff;
-        background: url(../img/download.png) £owl-success-color no-repeat 50%
+        background: url(../img/download.png) $owl-success-color no-repeat 50%
           55%;
         @include owl-radius(100%);
       }
@@ -103,12 +103,12 @@
   }
 }
 
-@media #{£medium-up} {
+@media #{$medium-up} {
   #toggle-nav {
     display: none;
   }
 }
-@media #{£small-only} {
+@media #{$small-only} {
   .nav-bar {
     display: none;
   }
@@ -127,7 +127,7 @@
 
 /* Home Panel */
 #hero {
-  background: £owl-primary-color;
+  background: $owl-primary-color;
   padding: 5rem 0;
 
   .owl-logo {
@@ -155,7 +155,7 @@
     font-size: 1.25rem;
     font-weight: 400;
     background: #fff;
-    color: £owl-primary-color;
+    color: $owl-primary-color;
     border: 1px solid #fff;
     @include owl-radius(2px);
     @include owl-transition(all, 200ms);
@@ -165,8 +165,8 @@
       color: #fff;
     }
     &:hover {
-      background: £owl-success-color;
-      border: 1px solid £owl-success-color;
+      background: $owl-success-color;
+      border: 1px solid $owl-success-color;
       color: #fff;
     }
   }
@@ -194,7 +194,7 @@
     }
   }
 }
-@media #{£small-only} {
+@media #{$small-only} {
   #hero {
     .owl-logo {
       display: none;
@@ -211,7 +211,7 @@
 .home-demo {
   padding: 2rem 0;
   .item {
-    background: £owl-success-color;
+    background: $owl-success-color;
   }
   h3 {
     text-align: center;
@@ -227,7 +227,7 @@
     font-weight: 300;
   }
   .owl-dot.active span {
-    background: £owl-success-color;
+    background: $owl-success-color;
   }
 }
 
@@ -247,7 +247,7 @@
     margin: 0 auto;
   }
 }
-@media #{£small-only} {
+@media #{$small-only} {
   #features {
     .feature {
       margin: 1rem 0;
@@ -298,7 +298,7 @@ blockquote p {
 /* Title */
 
 .title {
-  background: £owl-gray-color;
+  background: $owl-gray-color;
   margin-bottom: 2rem;
   h1 {
     margin: 0;
@@ -307,7 +307,7 @@ blockquote p {
   }
 }
 
-@media #{£small-only} {
+@media #{$small-only} {
   .title {
     margin-bottom: 0rem;
   }
@@ -324,7 +324,7 @@ blockquote p {
   @include owl-transition(background, 200ms);
 
   &:hover {
-    background: £owl-primary-color;
+    background: $owl-primary-color;
     h5 {
       color: #fff;
     }
@@ -338,7 +338,7 @@ blockquote p {
 
 code {
   font-weight: bold;
-  background: £owl-gray-color;
+  background: $owl-gray-color;
   font-size: 90%;
   font-weight: normal;
   padding: 1px 5px;
@@ -347,7 +347,7 @@ code {
 
 blockquote {
   padding: 1rem 1rem;
-  border-left: 7px solid £owl-primary-color;
+  border-left: 7px solid $owl-primary-color;
 }
 blockquote p {
   font-size: 1.1rem;

@@ -498,9 +498,9 @@ var hljs = new (function () {
   this.BE = { b: "\\\\[\\s\\S]", r: 0 };
   this.ASM = { cN: "string", b: "'", e: "'", i: "\\n", c: [this.BE] };
   this.QSM = { cN: "string", b: '"', e: '"', i: "\\n", c: [this.BE] };
-  this.CLCM = { cN: "comment", b: "//", e: "£" };
+  this.CLCM = { cN: "comment", b: "//", e: "$" };
   this.CBLCLM = { cN: "comment", b: "/\\*", e: "\\*/" };
-  this.HCM = { cN: "comment", b: "#", e: "£" };
+  this.HCM = { cN: "comment", b: "#", e: "$" };
   this.NM = { cN: "number", b: this.NR, r: 0 };
   this.CNM = { cN: "number", b: this.CNR, r: 0 };
   this.BNM = { cN: "number", b: this.BNR, r: 0 };
@@ -517,13 +517,13 @@ var hljs = new (function () {
 hljs.registerLanguage("bash", function (b) {
   var a = {
     cN: "variable",
-    v: [{ b: /\£[\w\d#@][\w\d_]*/ }, { b: /\£\{(.*?)\}/ }],
+    v: [{ b: /\$[\w\d#@][\w\d_]*/ }, { b: /\$\{(.*?)\}/ }],
   };
   var d = {
     cN: "string",
     b: /"/,
     e: /"/,
-    c: [b.BE, a, { cN: "variable", b: /\£\(/, e: /\)/, c: [b.BE] }],
+    c: [b.BE, a, { cN: "variable", b: /\$\(/, e: /\)/, c: [b.BE] }],
   };
   var c = { cN: "string", b: /'/, e: /'/ };
   return {
@@ -537,7 +537,7 @@ hljs.registerLanguage("bash", function (b) {
       operator: "-ne -eq -lt -gt -f -d -e -s -l -a",
     },
     c: [
-      { cN: "shebang", b: /^#![^\n]+sh\s*£/, r: 10 },
+      { cN: "shebang", b: /^#![^\n]+sh\s*$/, r: 10 },
       {
         cN: "function",
         b: /\w[\w\d_]*\s*\(\s*\)\s*\{/,
@@ -562,7 +562,7 @@ hljs.registerLanguage("cs", function (b) {
       {
         cN: "comment",
         b: "///",
-        e: "£",
+        e: "$",
         rB: true,
         c: [
           { cN: "xmlDocTag", b: "///|<!--|-->" },
@@ -574,7 +574,7 @@ hljs.registerLanguage("cs", function (b) {
       {
         cN: "preprocessor",
         b: "#",
-        e: "£",
+        e: "$",
         k:
           "if else elif endif define undef warning error line region endregion pragma checksum",
       },
@@ -603,9 +603,9 @@ hljs.registerLanguage("ruby", function (e) {
   var i = {
     cN: "comment",
     v: [
-      { b: "#", e: "£", c: [a] },
+      { b: "#", e: "$", c: [a] },
       { b: "^\\=begin", e: "^\\=end", c: [a], r: 10 },
-      { b: "^__END__", e: "\\n£" },
+      { b: "^__END__", e: "\\n$" },
     ],
   };
   var c = { cN: "subst", b: "#\\{", e: "}", k: g };
@@ -633,7 +633,7 @@ hljs.registerLanguage("ruby", function (e) {
     {
       cN: "class",
       bK: "class module",
-      e: "£|;",
+      e: "$|;",
       i: /=/,
       c: [
         e.inherit(e.TM, { b: "[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?" }),
@@ -648,7 +648,7 @@ hljs.registerLanguage("ruby", function (e) {
     {
       cN: "function",
       bK: "def",
-      e: " |£|;",
+      e: " |$|;",
       r: 0,
       c: [e.inherit(e.TM, { b: h }), b, i],
     },
@@ -661,7 +661,7 @@ hljs.registerLanguage("ruby", function (e) {
         "(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",
       r: 0,
     },
-    { cN: "variable", b: "(\\£\\W)|((\\£|\\@\\@?)(\\w+))" },
+    { cN: "variable", b: "(\\$\\W)|((\\$|\\@\\@?)(\\w+))" },
     {
       b: "(" + e.RSR + ")\\s*",
       c: [
@@ -693,25 +693,25 @@ hljs.registerLanguage("diff", function (a) {
         cN: "chunk",
         r: 10,
         v: [
-          { b: /^\@\@ +\-\d+,\d+ +\+\d+,\d+ +\@\@£/ },
-          { b: /^\*\*\* +\d+,\d+ +\*\*\*\*£/ },
-          { b: /^\-\-\- +\d+,\d+ +\-\-\-\-£/ },
+          { b: /^\@\@ +\-\d+,\d+ +\+\d+,\d+ +\@\@$/ },
+          { b: /^\*\*\* +\d+,\d+ +\*\*\*\*$/ },
+          { b: /^\-\-\- +\d+,\d+ +\-\-\-\-$/ },
         ],
       },
       {
         cN: "header",
         v: [
-          { b: /Index: /, e: /£/ },
-          { b: /=====/, e: /=====£/ },
-          { b: /^\-\-\-/, e: /£/ },
-          { b: /^\*{3} /, e: /£/ },
-          { b: /^\+\+\+/, e: /£/ },
-          { b: /\*{5}/, e: /\*{5}£/ },
+          { b: /Index: /, e: /$/ },
+          { b: /=====/, e: /=====$/ },
+          { b: /^\-\-\-/, e: /$/ },
+          { b: /^\*{3} /, e: /$/ },
+          { b: /^\+\+\+/, e: /$/ },
+          { b: /\*{5}/, e: /\*{5}$/ },
         ],
       },
-      { cN: "addition", b: "^\\+", e: "£" },
-      { cN: "deletion", b: "^\\-", e: "£" },
-      { cN: "change", b: "^\\!", e: "£" },
+      { cN: "addition", b: "^\\+", e: "$" },
+      { cN: "deletion", b: "^\\-", e: "$" },
+      { cN: "change", b: "^\\!", e: "$" },
     ],
   };
 });
@@ -748,7 +748,7 @@ hljs.registerLanguage("javascript", function (a) {
         bK: "function",
         e: /\{/,
         c: [
-          a.inherit(a.TM, { b: /[A-Za-z£_][0-9A-Za-z£_]*/ }),
+          a.inherit(a.TM, { b: /[A-Za-z$_][0-9A-Za-z$_]*/ }),
           {
             cN: "params",
             b: /\(/,
@@ -759,7 +759,7 @@ hljs.registerLanguage("javascript", function (a) {
         ],
         i: /\[|%/,
       },
-      { b: /\£[(.]/ },
+      { b: /\$[(.]/ },
       { b: "\\." + a.IR, r: 0 },
     ],
   };
@@ -806,7 +806,7 @@ hljs.registerLanguage("xml", function (a) {
       { cN: "cdata", b: "<\\!\\[CDATA\\[", e: "\\]\\]>", r: 10 },
       {
         cN: "tag",
-        b: "<style(?=\\s|>|£)",
+        b: "<style(?=\\s|>|$)",
         e: ">",
         k: { title: "style" },
         c: [b],
@@ -814,7 +814,7 @@ hljs.registerLanguage("xml", function (a) {
       },
       {
         cN: "tag",
-        b: "<script(?=\\s|>|£)",
+        b: "<script(?=\\s|>|$)",
         e: ">",
         k: { title: "script" },
         c: [b],
@@ -837,15 +837,15 @@ hljs.registerLanguage("markdown", function (a) {
     c: [
       {
         cN: "header",
-        v: [{ b: "^#{1,6}", e: "£" }, { b: "^.+?\\n[=-]{2,}£" }],
+        v: [{ b: "^#{1,6}", e: "$" }, { b: "^.+?\\n[=-]{2,}$" }],
       },
       { b: "<", e: ">", sL: "xml", r: 0 },
       { cN: "bullet", b: "^([*+-]|(\\d+\\.))\\s+" },
       { cN: "strong", b: "[*_]{2}.+?[*_]{2}" },
       { cN: "emphasis", v: [{ b: "\\*.+?\\*" }, { b: "_.+?_", r: 0 }] },
-      { cN: "blockquote", b: "^>\\s+", e: "£" },
-      { cN: "code", v: [{ b: "`.+?`" }, { b: "^( {4}|\t)", e: "£", r: 0 }] },
-      { cN: "horizontal_rule", b: "^[-\\*]{3,}", e: "£" },
+      { cN: "blockquote", b: "^>\\s+", e: "$" },
+      { cN: "code", v: [{ b: "`.+?`" }, { b: "^( {4}|\t)", e: "$", r: 0 }] },
+      { cN: "horizontal_rule", b: "^[-\\*]{3,}", e: "$" },
       {
         b: "\\[.+?\\][\\(\\[].+?[\\)\\]]",
         rB: true,
@@ -858,11 +858,11 @@ hljs.registerLanguage("markdown", function (a) {
       },
       {
         b: "^\\[.+\\]:",
-        e: "£",
+        e: "$",
         rB: true,
         c: [
           { cN: "link_reference", b: "\\[", e: "\\]", eB: true, eE: true },
-          { cN: "link_url", b: "\\s", e: "£" },
+          { cN: "link_url", b: "\\s", e: "$" },
         ],
       },
     ],
@@ -883,7 +883,7 @@ hljs.registerLanguage("css", function (a) {
       a.CBLCLM,
       { cN: "id", b: "\\#[A-Za-z0-9_-]+" },
       { cN: "class", b: "\\.[A-Za-z0-9_-]+", r: 0 },
-      { cN: "attr_selector", b: "\\[", e: "\\]", i: "£" },
+      { cN: "attr_selector", b: "\\[", e: "\\]", i: "$" },
       { cN: "pseudo", b: ":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+" },
       {
         cN: "at_rule",
@@ -951,14 +951,14 @@ hljs.registerLanguage("http", function (a) {
       {
         cN: "status",
         b: "^HTTP/[0-9\\.]+",
-        e: "£",
+        e: "$",
         c: [{ cN: "number", b: "\\b\\d{3}\\b" }],
       },
       {
         cN: "request",
-        b: "^[A-Z]+ (.*?) HTTP/[0-9\\.]+£",
+        b: "^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",
         rB: true,
-        e: "£",
+        e: "$",
         c: [{ cN: "string", b: " ", e: " ", eB: true, eE: true }],
       },
       {
@@ -967,7 +967,7 @@ hljs.registerLanguage("http", function (a) {
         e: ": ",
         eE: true,
         i: "\\n|\\s|=",
-        starts: { cN: "string", e: "£" },
+        starts: { cN: "string", e: "$" },
       },
       { b: "\\n\\n", starts: { sL: "", eW: true } },
     ],
@@ -1012,7 +1012,7 @@ hljs.registerLanguage("java", function (b) {
   };
 });
 hljs.registerLanguage("php", function (b) {
-  var e = { cN: "variable", b: "\\£+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*" };
+  var e = { cN: "variable", b: "\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*" };
   var a = { cN: "preprocessor", b: /<\?(php)?|\?>/ };
   var c = {
     cN: "string",
@@ -1045,14 +1045,14 @@ hljs.registerLanguage("php", function (b) {
         k: "__halt_compiler",
         l: b.UIR,
       },
-      { cN: "string", b: "<<<['\"]?\\w+['\"]?£", e: "^\\w+;", c: [b.BE] },
+      { cN: "string", b: "<<<['\"]?\\w+['\"]?$", e: "^\\w+;", c: [b.BE] },
       a,
       e,
       {
         cN: "function",
         bK: "function",
         e: /[;{]/,
-        i: "\\£|\\[|%",
+        i: "\\$|\\[|%",
         c: [
           b.UTM,
           { cN: "params", b: "\\(", e: "\\)", c: ["self", e, b.CBLCLM, c, d] },
@@ -1062,7 +1062,7 @@ hljs.registerLanguage("php", function (b) {
         cN: "class",
         bK: "class interface",
         e: "{",
-        i: /[:\(\£"]/,
+        i: /[:\(\$"]/,
         c: [{ bK: "extends implements", r: 10 }, b.UTM],
       },
       { bK: "namespace", e: ";", i: /[\.']/, c: [b.UTM] },
@@ -1099,7 +1099,7 @@ hljs.registerLanguage("python", function (a) {
     ],
   };
   var e = { cN: "params", b: /\(/, e: /\)/, c: ["self", f, d, b] };
-  var c = { e: /:/, i: /[£{=;\n]/, c: [a.UTM, e] };
+  var c = { e: /:/, i: /[${=;\n]/, c: [a.UTM, e] };
   return {
     k: {
       keyword:
@@ -1114,7 +1114,7 @@ hljs.registerLanguage("python", function (a) {
       a.HCM,
       a.inherit(c, { cN: "function", bK: "def", r: 10 }),
       a.inherit(c, { cN: "class", bK: "class" }),
-      { cN: "decorator", b: /@/, e: /£/ },
+      { cN: "decorator", b: /@/, e: /$/ },
       { b: /\b(print|exec)\(/ },
     ],
   };
@@ -1143,7 +1143,7 @@ hljs.registerLanguage("sql", function (a) {
         ],
       },
       a.CBLCLM,
-      { cN: "comment", b: "--", e: "£" },
+      { cN: "comment", b: "--", e: "$" },
     ],
   };
 });
@@ -1152,12 +1152,12 @@ hljs.registerLanguage("ini", function (a) {
     cI: true,
     i: /\S/,
     c: [
-      { cN: "comment", b: ";", e: "£" },
+      { cN: "comment", b: ";", e: "$" },
       { cN: "title", b: "^\\[", e: "\\]" },
       {
         cN: "setting",
         b: "^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*",
-        e: "£",
+        e: "$",
         c: [
           {
             cN: "value",
@@ -1174,17 +1174,17 @@ hljs.registerLanguage("ini", function (a) {
 hljs.registerLanguage("perl", function (c) {
   var d =
     "getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qqfileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent shutdown dump chomp connect getsockname die socketpair close flock exists index shmgetsub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedirioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when";
-  var f = { cN: "subst", b: "[£@]\\{", e: "\\}", k: d };
+  var f = { cN: "subst", b: "[$@]\\{", e: "\\}", k: d };
   var g = { b: "->{", e: "}" };
   var a = {
     cN: "variable",
     v: [
-      { b: /\£\d/ },
-      { b: /[\£\%\@\*](\^\w\b|#\w+(\:\:\w+)*|{\w+}|\w+(\:\:\w*)*)/ },
-      { b: /[\£\%\@\*][^\s\w{]/, r: 0 },
+      { b: /\$\d/ },
+      { b: /[\$\%\@\*](\^\w\b|#\w+(\:\:\w+)*|{\w+}|\w+(\:\:\w*)*)/ },
+      { b: /[\$\%\@\*][^\s\w{]/, r: 0 },
     ],
   };
-  var e = { cN: "comment", b: "^(__END__|__DATA__)", e: "\\n£", r: 5 };
+  var e = { cN: "comment", b: "^(__END__|__DATA__)", e: "\\n$", r: 5 };
   var h = [c.BE, f, a];
   var b = [
     a,
@@ -1260,17 +1260,17 @@ hljs.registerLanguage("objectivec", function (a) {
       {
         cN: "preprocessor",
         b: "#import",
-        e: "£",
+        e: "$",
         c: [
           { cN: "title", b: '"', e: '"' },
           { cN: "title", b: "<", e: ">" },
         ],
       },
-      { cN: "preprocessor", b: "#", e: "£" },
+      { cN: "preprocessor", b: "#", e: "$" },
       {
         cN: "class",
         b: "(" + b.split(" ").join("|") + ")\\b",
-        e: "({|£)",
+        e: "({|$)",
         k: b,
         l: c,
         c: [a.UTM],
@@ -1288,7 +1288,7 @@ hljs.registerLanguage("coffeescript", function (c) {
       "case default function var void with const let enum export import native __hasProp __extends __slice __bind __indexOf",
     built_in: "npm require console print module exports global window document",
   };
-  var a = "[A-Za-z£_][0-9A-Za-z£_]*";
+  var a = "[A-Za-z$_][0-9A-Za-z$_]*";
   var f = c.inherit(c.TM, { b: a });
   var e = { cN: "subst", b: /#\{/, e: /}/, k: b };
   var d = [
@@ -1308,7 +1308,7 @@ hljs.registerLanguage("coffeescript", function (c) {
       v: [
         { b: "///", e: "///", c: [e, c.HCM] },
         { b: "//[gim]*", r: 0 },
-        { b: "/\\S(\\\\.|[^\\n])*?/[gim]*(?=\\s|\\W|£)" },
+        { b: "/\\S(\\\\.|[^\\n])*?/[gim]*(?=\\s|\\W|$)" },
       ],
     },
     { cN: "property", b: "@" + a },
@@ -1338,7 +1338,7 @@ hljs.registerLanguage("coffeescript", function (c) {
       {
         cN: "class",
         bK: "class",
-        e: "£",
+        e: "$",
         i: /[:="\[\]]/,
         c: [{ bK: "extends", eW: true, i: /[:="\[\]]/, c: [f] }, f],
       },
@@ -1349,7 +1349,7 @@ hljs.registerLanguage("coffeescript", function (c) {
 hljs.registerLanguage("nginx", function (c) {
   var b = {
     cN: "variable",
-    v: [{ b: /\£\d+/ }, { b: /\£\{/, e: /}/ }, { b: "[\\£\\@]" + c.UIR }],
+    v: [{ b: /\$\d+/ }, { b: /\$\{/, e: /}/ }, { b: "[\\$\\@]" + c.UIR }],
   };
   var a = {
     eW: true,
@@ -1429,7 +1429,7 @@ hljs.registerLanguage("json", function (a) {
   return { c: d, k: e, i: "\\S" };
 });
 hljs.registerLanguage("apache", function (a) {
-  var b = { cN: "number", b: "[\\£%]\\d+" };
+  var b = { cN: "number", b: "[\\$%]\\d+" };
   return {
     cI: true,
     c: [
@@ -1444,12 +1444,12 @@ hljs.registerLanguage("apache", function (a) {
             "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername",
         },
         starts: {
-          e: /£/,
+          e: /$/,
           r: 0,
           k: { literal: "on off all" },
           c: [
-            { cN: "sqbracket", b: "\\s\\[", e: "\\]£" },
-            { cN: "cbracket", b: "[\\£%]\\{", e: "\\}", c: ["self", b] },
+            { cN: "sqbracket", b: "\\s\\[", e: "\\]$" },
+            { cN: "cbracket", b: "[\\$%]\\{", e: "\\}", c: ["self", b] },
             b,
             a.QSM,
           ],
@@ -1480,7 +1480,7 @@ hljs.registerLanguage("cpp", function (a) {
       {
         cN: "preprocessor",
         b: "#",
-        e: "£",
+        e: "$",
         c: [{ b: "include\\s*<", e: ">", i: "\\n" }, a.CLCM],
       },
       {
@@ -1496,7 +1496,7 @@ hljs.registerLanguage("cpp", function (a) {
   };
 });
 hljs.registerLanguage("makefile", function (a) {
-  var b = { cN: "variable", b: /\£\(/, e: /\)/, c: [a.BE] };
+  var b = { cN: "variable", b: /\$\(/, e: /\)/, c: [a.BE] };
   return {
     c: [
       a.HCM,
@@ -1508,12 +1508,12 @@ hljs.registerLanguage("makefile", function (a) {
           cN: "constant",
           e: /\s*\W*=/,
           eE: true,
-          starts: { e: /£/, r: 0, c: [b] },
+          starts: { e: /$/, r: 0, c: [b] },
         },
       },
-      { cN: "title", b: /^[\w]+:\s*£/ },
-      { cN: "phony", b: /^\.PHONY:/, e: /£/, k: ".PHONY", l: /[\.\w]+/ },
-      { b: /^\t+/, e: /£/, c: [a.QSM, b] },
+      { cN: "title", b: /^[\w]+:\s*$/ },
+      { cN: "phony", b: /^\.PHONY:/, e: /$/, k: ".PHONY", l: /[\.\w]+/ },
+      { b: /^\t+/, e: /$/, c: [a.QSM, b] },
     ],
   };
 });

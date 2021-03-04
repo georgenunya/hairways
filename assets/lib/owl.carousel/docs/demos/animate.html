@@ -135,7 +135,7 @@
             <li>Include animate.css into header.</li>
             <li>Set <code>animateOut</code> and <code>animateIn</code> options with the style names you picked.</li>
           </ol>
-          <pre><code>£(&#39;.custom1&#39;).owlCarousel({
+          <pre><code>$(&#39;.custom1&#39;).owlCarousel({
     animateOut: &#39;slideOutDown&#39;,
     animateIn: &#39;flipInX&#39;,
     items:1,
@@ -232,14 +232,14 @@
 }</code></pre>
           <link rel="stylesheet" href="../assets/css/animate.css">
           <script>
-            jQuery(document).ready(function(£) {
-              £('.fadeOut').owlCarousel({
+            jQuery(document).ready(function($) {
+              $('.fadeOut').owlCarousel({
                 items: 1,
                 animateOut: 'fadeOut',
                 loop: true,
                 margin: 10,
               });
-              £('.custom1').owlCarousel({
+              $('.custom1').owlCarousel({
                 animateOut: 'slideOutDown',
                 animateIn: 'flipInX',
                 items: 1,

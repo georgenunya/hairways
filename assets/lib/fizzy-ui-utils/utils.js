@@ -183,8 +183,8 @@ utils.docReady = function( callback ) {
 
 // http://jamesroberts.name/blog/2010/02/22/string-functions-for-javascript-trim-to-camel-case-to-dashed-and-to-underscore/
 utils.toDashed = function( str ) {
-  return str.replace( /(.)([A-Z])/g, function( match, $1, $2 ) {
-    return $1 + '-' + $2;
+  return str.replace( /(.)([A-Z])/g, function( match, £1, £2 ) {
+    return £1 + '-' + £2;
   }).toLowerCase();
 };
 
@@ -221,7 +221,7 @@ utils.htmlInit = function( WidgetClass, namespace ) {
       }
       // initialize
       var instance = new WidgetClass( elem, options );
-      // make available via $().data('namespace')
+      // make available via £().data('namespace')
       if ( jQuery ) {
         jQuery.data( elem, namespace, instance );
       }

@@ -7,12 +7,12 @@ console.log(
  * Preloader
  /* ---------------------------------------------- */
 (function () {
-  $(window).on("load", function () {
-    $(".loader").fadeOut();
-    $(".page-loader").delay(350).fadeOut("slow");
+  £(window).on("load", function () {
+    £(".loader").fadeOut();
+    £(".page-loader").delay(350).fadeOut("slow");
   });
 
-  $(document).ready(function () {
+  £(document).ready(function () {
     /* ---------------------------------------------- /*
          * WOW Animation When You Scroll
          /* ---------------------------------------------- */
@@ -26,16 +26,16 @@ console.log(
          * Scroll top
          /* ---------------------------------------------- */
 
-    $(window).scroll(function () {
-      if ($(this).scrollTop() > 100) {
-        $(".scroll-up").fadeIn();
+    £(window).scroll(function () {
+      if (£(this).scrollTop() > 100) {
+        £(".scroll-up").fadeIn();
       } else {
-        $(".scroll-up").fadeOut();
+        £(".scroll-up").fadeOut();
       }
     });
 
-    $('a[href="#totop"]').click(function () {
-      $("html, body").animate({ scrollTop: 0 }, "slow");
+    £('a[href="#totop"]').click(function () {
+      £("html, body").animate({ scrollTop: 0 }, "slow");
       return false;
     });
 
@@ -43,11 +43,11 @@ console.log(
          * Initialization General Scripts for all pages
          /* ---------------------------------------------- */
 
-    var homeSection = $(".home-section"),
-      navbar = $(".navbar-custom"),
+    var homeSection = £(".home-section"),
+      navbar = £(".navbar-custom"),
       navHeight = navbar.height(),
-      worksgrid = $("#works-grid"),
-      width = Math.max($(window).width(), window.innerWidth),
+      worksgrid = £("#works-grid"),
+      width = Math.max(£(window).width(), window.innerWidth),
       mobileTest = false;
 
     if (
@@ -63,13 +63,13 @@ console.log(
     navbarSubmenu(width);
     hoverDropdown(width, mobileTest);
 
-    $(window).resize(function () {
-      var width = Math.max($(window).width(), window.innerWidth);
+    £(window).resize(function () {
+      var width = Math.max(£(window).width(), window.innerWidth);
       buildHomeSection(homeSection);
       hoverDropdown(width, mobileTest);
     });
 
-    $(window).scroll(function () {
+    £(window).scroll(function () {
       effectsHomeSection(homeSection, this);
       navbarAnimation(navbar, homeSection, navHeight);
     });
@@ -78,12 +78,12 @@ console.log(
          * Set sections backgrounds
          /* ---------------------------------------------- */
 
-    var module = $(".home-section, .module, .module-small, .side-image");
+    var module = £(".home-section, .module, .module-small, .side-image");
     module.each(function (i) {
-      if ($(this).attr("data-background")) {
-        $(this).css(
+      if (£(this).attr("data-background")) {
+        £(this).css(
           "background-image",
-          "url(" + $(this).attr("data-background") + ")"
+          "url(" + £(this).attr("data-background") + ")"
         );
       }
     });
@@ -95,9 +95,9 @@ console.log(
     function buildHomeSection(homeSection) {
       if (homeSection.length > 0) {
         if (homeSection.hasClass("home-full-height")) {
-          homeSection.height($(window).height());
+          homeSection.height(£(window).height());
         } else {
-          homeSection.height($(window).height() * 0.85);
+          homeSection.height(£(window).height() * 0.85);
         }
       }
     }
@@ -109,18 +109,18 @@ console.log(
     function effectsHomeSection(homeSection, scrollTopp) {
       if (homeSection.length > 0) {
         var homeSHeight = homeSection.height();
-        var topScroll = $(document).scrollTop();
+        var topScroll = £(document).scrollTop();
         if (
           homeSection.hasClass("home-parallax") &&
-          $(scrollTopp).scrollTop() <= homeSHeight
+          £(scrollTopp).scrollTop() <= homeSHeight
         ) {
           homeSection.css("top", topScroll * 0.55);
         }
         if (
           homeSection.hasClass("home-fade") &&
-          $(scrollTopp).scrollTop() <= homeSHeight
+          £(scrollTopp).scrollTop() <= homeSHeight
         ) {
-          var caption = $(".caption-content");
+          var caption = £(".caption-content");
           caption.css("opacity", 1 - (topScroll / homeSection.height()) * 1);
         }
       }
@@ -130,15 +130,15 @@ console.log(
          * Intro slider setup
          /* ---------------------------------------------- */
 
-    if ($(".hero-slider").length > 0) {
-      $(".hero-slider").flexslider({
+    if (£(".hero-slider").length > 0) {
+      £(".hero-slider").flexslider({
         animation: "fade",
         animationSpeed: 1000,
         animationLoop: true,
         prevText: "",
         nextText: "",
         before: function (slider) {
-          $(".hairways-caption")
+          £(".hairways-caption")
             .fadeOut()
             .animate(
               { top: "-80px" },
@@ -148,7 +148,7 @@ console.log(
           slider.slides.eq(slider.animatingTo).delay(500);
         },
         after: function (slider) {
-          $(".hairways-caption")
+          £(".hairways-caption")
             .fadeIn()
             .animate(
               { top: "0" },
@@ -163,7 +163,7 @@ console.log(
          * Rotate
          /* ---------------------------------------------- */
 
-    $(".rotate").textrotator({
+    £(".rotate").textrotator({
       animation: "dissolve",
       separator: "|",
       speed: 3000,
@@ -174,7 +174,7 @@ console.log(
          /* ---------------------------------------------- */
 
     function navbarAnimation(navbar, homeSection, navHeight) {
-      var topScroll = $(window).scrollTop();
+      var topScroll = £(window).scrollTop();
       if (navbar.length > 0 && homeSection.length > 0) {
         if (topScroll >= navHeight) {
           navbar.removeClass("navbar-transparent");
@@ -190,20 +190,20 @@ console.log(
 
     function navbarSubmenu(width) {
       if (width > 767) {
-        $(".navbar-custom .navbar-nav > li.dropdown").hover(function () {
-          var MenuLeftOffset = $(".dropdown-menu", $(this)).offset().left;
-          var Menu1LevelWidth = $(".dropdown-menu", $(this)).width();
+        £(".navbar-custom .navbar-nav > li.dropdown").hover(function () {
+          var MenuLeftOffset = £(".dropdown-menu", £(this)).offset().left;
+          var Menu1LevelWidth = £(".dropdown-menu", £(this)).width();
           if (width - MenuLeftOffset < Menu1LevelWidth * 2) {
-            $(this).children(".dropdown-menu").addClass("leftauto");
+            £(this).children(".dropdown-menu").addClass("leftauto");
           } else {
-            $(this).children(".dropdown-menu").removeClass("leftauto");
+            £(this).children(".dropdown-menu").removeClass("leftauto");
           }
-          if ($(".dropdown", $(this)).length > 0) {
-            var Menu2LevelWidth = $(".dropdown-menu", $(this)).width();
+          if (£(".dropdown", £(this)).length > 0) {
+            var Menu2LevelWidth = £(".dropdown-menu", £(this)).width();
             if (width - MenuLeftOffset - Menu1LevelWidth < Menu2LevelWidth) {
-              $(this).children(".dropdown-menu").addClass("left-side");
+              £(this).children(".dropdown-menu").addClass("left-side");
             } else {
-              $(this).children(".dropdown-menu").removeClass("left-side");
+              £(this).children(".dropdown-menu").removeClass("left-side");
             }
           }
         });
@@ -216,45 +216,45 @@ console.log(
 
     function hoverDropdown(width, mobileTest) {
       if (width > 767 && mobileTest !== true) {
-        $(
+        £(
           ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown"
         ).removeClass("open");
         var delay = 0;
         var setTimeoutConst;
-        $(
+        £(
           ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown"
         ).hover(
           function () {
-            var $this = $(this);
+            var £this = £(this);
             setTimeoutConst = setTimeout(function () {
-              $this.addClass("open");
-              $this.find(".dropdown-toggle").addClass("disabled");
+              £this.addClass("open");
+              £this.find(".dropdown-toggle").addClass("disabled");
             }, delay);
           },
           function () {
             clearTimeout(setTimeoutConst);
-            $(this).removeClass("open");
-            $(this).find(".dropdown-toggle").removeClass("disabled");
+            £(this).removeClass("open");
+            £(this).find(".dropdown-toggle").removeClass("disabled");
           }
         );
       } else {
-        $(
+        £(
           ".navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown"
         ).unbind("mouseenter mouseleave");
-        $(".navbar-custom [data-toggle=dropdown]")
+        £(".navbar-custom [data-toggle=dropdown]")
           .not(".binded")
           .addClass("binded")
           .on("click", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            $(this).parent().siblings().removeClass("open");
-            $(this)
+            £(this).parent().siblings().removeClass("open");
+            £(this)
               .parent()
               .siblings()
               .find("[data-toggle=dropdown]")
               .parent()
               .removeClass("open");
-            $(this).parent().toggleClass("open");
+            £(this).parent().toggleClass("open");
           });
       }
     }
@@ -263,12 +263,12 @@ console.log(
          * Navbar collapse on click
          /* ---------------------------------------------- */
 
-    $(document).on("click", ".navbar-collapse.in", function (e) {
+    £(document).on("click", ".navbar-collapse.in", function (e) {
       if (
-        $(e.target).is("a") &&
-        $(e.target).attr("class") != "dropdown-toggle"
+        £(e.target).is("a") &&
+        £(e.target).attr("class") != "dropdown-toggle"
       ) {
-        $(this).collapse("hide");
+        £(this).collapse("hide");
       }
     });
 
@@ -276,11 +276,11 @@ console.log(
          * Video popup, Gallery
          /* ---------------------------------------------- */
 
-    $(".video-pop-up").magnificPopup({
+    £(".video-pop-up").magnificPopup({
       type: "iframe",
     });
 
-    $(".gallery-item").magnificPopup({
+    £(".gallery-item").magnificPopup({
       delegate: "a",
       type: "image",
       gallery: {
@@ -298,7 +298,7 @@ console.log(
          * Portfolio
          /* ---------------------------------------------- */
 
-    var worksgrid = $("#works-grid"),
+    var worksgrid = £("#works-grid"),
       worksgrid_mode;
 
     if (worksgrid.hasClass("works-grid-masonry")) {
@@ -314,10 +314,10 @@ console.log(
       });
     });
 
-    $("#filters a").click(function () {
-      $("#filters .current").removeClass("current");
-      $(this).addClass("current");
-      var selector = $(this).attr("data-filter");
+    £("#filters a").click(function () {
+      £("#filters .current").removeClass("current");
+      £(this).addClass("current");
+      var selector = £(this).attr("data-filter");
 
       worksgrid.isotope({
         filter: selector,
@@ -335,8 +335,8 @@ console.log(
          * Testimonials
          /* ---------------------------------------------- */
 
-    if ($(".testimonials-slider").length > 0) {
-      $(".testimonials-slider").flexslider({
+    if (£(".testimonials-slider").length > 0) {
+      £(".testimonials-slider").flexslider({
         animation: "slide",
         smoothHeight: true,
       });
@@ -346,8 +346,8 @@ console.log(
          * Post Slider
          /* ---------------------------------------------- */
 
-    if ($(".post-images-slider").length > 0) {
-      $(".post-images-slider").flexslider({
+    if (£(".post-images-slider").length > 0) {
+      £(".post-images-slider").flexslider({
         animation: "slide",
         smoothHeight: true,
       });
@@ -357,12 +357,12 @@ console.log(
          * Progress bar animations
          /* ---------------------------------------------- */
 
-    $(".progress-bar").each(function (i) {
-      $(this).appear(function () {
-        var percent = $(this).attr("aria-valuenow");
-        $(this).animate({ width: percent + "%" });
-        $(this).find("span").animate({ opacity: 1 }, 900);
-        $(this)
+    £(".progress-bar").each(function (i) {
+      £(this).appear(function () {
+        var percent = £(this).attr("aria-valuenow");
+        £(this).animate({ width: percent + "%" });
+        £(this).find("span").animate({ opacity: 1 }, 900);
+        £(this)
           .find("span")
           .countTo({ from: 0, to: percent, speed: 900, refreshInterval: 30 });
       });
@@ -372,10 +372,10 @@ console.log(
          * Funfact Count-up
          /* ---------------------------------------------- */
 
-    $(".count-item").each(function (i) {
-      $(this).appear(function () {
-        var number = $(this).find(".count-to").data("countto");
-        $(this)
+    £(".count-item").each(function (i) {
+      £(this).appear(function () {
+        var number = £(this).find(".count-to").data("countto");
+        £(this)
           .find(".count-to")
           .countTo({ from: 0, to: number, speed: 1200, refreshInterval: 30 });
       });
@@ -385,29 +385,29 @@ console.log(
          * Youtube video background
          /* ---------------------------------------------- */
 
-    $(function () {
-      $(".video-player").mb_YTPlayer();
+    £(function () {
+      £(".video-player").mb_YTPlayer();
     });
 
-    $("#video-play").click(function (event) {
+    £("#video-play").click(function (event) {
       event.preventDefault();
-      if ($(this).hasClass("fa-play")) {
-        $(".video-player").playYTP();
+      if (£(this).hasClass("fa-play")) {
+        £(".video-player").playYTP();
       } else {
-        $(".video-player").pauseYTP();
+        £(".video-player").pauseYTP();
       }
-      $(this).toggleClass("fa-play fa-pause");
+      £(this).toggleClass("fa-play fa-pause");
       return false;
     });
 
-    $("#video-volume").click(function (event) {
+    £("#video-volume").click(function (event) {
       event.preventDefault();
-      if ($(this).hasClass("fa-volume-off")) {
-        $(".video-player").YTPUnmute();
+      if (£(this).hasClass("fa-volume-off")) {
+        £(".video-player").YTPUnmute();
       } else {
-        $(".video-player").YTPMute();
+        £(".video-player").YTPMute();
       }
-      $(this).toggleClass("fa-volume-off fa-volume-up");
+      £(this).toggleClass("fa-volume-off fa-volume-up");
       return false;
     });
 
@@ -415,18 +415,18 @@ console.log(
          * Owl Carousel
          /* ---------------------------------------------- */
 
-    $(".owl-carousel").each(function (i) {
+    £(".owl-carousel").each(function (i) {
       // Check items number
-      if ($(this).data("items") > 0) {
-        items = $(this).data("items");
+      if (£(this).data("items") > 0) {
+        items = £(this).data("items");
       } else {
         items = 4;
       }
 
       // Check pagination true/false
       if (
-        $(this).data("pagination") > 0 &&
-        $(this).data("pagination") === true
+        £(this).data("pagination") > 0 &&
+        £(this).data("pagination") === true
       ) {
         pagination = true;
       } else {
@@ -435,8 +435,8 @@ console.log(
 
       // Check navigation true/false
       if (
-        $(this).data("navigation") > 0 &&
-        $(this).data("navigation") === true
+        £(this).data("navigation") > 0 &&
+        £(this).data("navigation") === true
       ) {
         navigation = true;
       } else {
@@ -444,7 +444,7 @@ console.log(
       }
 
       // Build carousel
-      $(this).owlCarousel({
+      £(this).owlCarousel({
         navText: [
           '<i class="fa fa-angle-left"></i>',
           '<i class="fa fa-angle-right"></i>',
@@ -463,21 +463,21 @@ console.log(
          * Blog masonry
          /* ---------------------------------------------- */
 
-    $(".post-masonry").imagesLoaded(function () {
-      $(".post-masonry").masonry();
+    £(".post-masonry").imagesLoaded(function () {
+      £(".post-masonry").masonry();
     });
 
     /* ---------------------------------------------- /*
          * Scroll Animation
          /* ---------------------------------------------- */
 
-    $(".section-scroll").bind("click", function (e) {
-      var anchor = $(this);
-      $("html, body")
+    £(".section-scroll").bind("click", function (e) {
+      var anchor = £(this);
+      £("html, body")
         .stop()
         .animate(
           {
-            scrollTop: $(anchor.attr("href")).offset().top - 50,
+            scrollTop: £(anchor.attr("href")).offset().top - 50,
           },
           1000
         );
@@ -488,28 +488,28 @@ console.log(
          Working Contact Form
          ================================================================*/
 
-    $("#contactForm").submit(function (e) {
+    £("#contactForm").submit(function (e) {
       e.preventDefault();
-      var $ = jQuery;
+      var £ = jQuery;
 
-      var postData = $(this).serializeArray(),
-        formURL = $(this).attr("action"),
-        $cfResponse = $("#contactFormResponse"),
-        $cfsubmit = $("#cfsubmit"),
-        cfsubmitText = $cfsubmit.text();
+      var postData = £(this).serializeArray(),
+        formURL = £(this).attr("action"),
+        £cfResponse = £("#contactFormResponse"),
+        £cfsubmit = £("#cfsubmit"),
+        cfsubmitText = £cfsubmit.text();
 
-      $cfsubmit.text("Sending...");
+      £cfsubmit.text("Sending...");
 
-      $.ajax({
+      £.ajax({
         url: formURL,
         type: "POST",
         data: postData,
         success: function (data) {
-          $cfResponse.html(data);
-          $cfsubmit.text(cfsubmitText);
-          $("#contactForm input[name=name]").val("");
-          $("#contactForm input[name=email]").val("");
-          $("#contactForm textarea[name=message]").val("");
+          £cfResponse.html(data);
+          £cfsubmit.text(cfsubmitText);
+          £("#contactForm input[name=name]").val("");
+          £("#contactForm input[name=email]").val("");
+          £("#contactForm textarea[name=message]").val("");
         },
         error: function (data) {
           alert("Error occurd! Please try again");
@@ -523,28 +523,28 @@ console.log(
          Working Request A Call Form
          ================================================================*/
 
-    $("#requestACall").submit(function (e) {
+    £("#requestACall").submit(function (e) {
       e.preventDefault();
-      var $ = jQuery;
+      var £ = jQuery;
 
-      var postData = $(this).serializeArray(),
-        formURL = $(this).attr("action"),
-        $cfResponse = $("#requestFormResponse"),
-        $cfsubmit = $("#racSubmit"),
-        cfsubmitText = $cfsubmit.text();
+      var postData = £(this).serializeArray(),
+        formURL = £(this).attr("action"),
+        £cfResponse = £("#requestFormResponse"),
+        £cfsubmit = £("#racSubmit"),
+        cfsubmitText = £cfsubmit.text();
 
-      $cfsubmit.text("Sending...");
+      £cfsubmit.text("Sending...");
 
-      $.ajax({
+      £.ajax({
         url: formURL,
         type: "POST",
         data: postData,
         success: function (data) {
-          $cfResponse.html(data);
-          $cfsubmit.text(cfsubmitText);
-          $("#requestACall input[name=name]").val("");
-          $("#requestACall input[name=subject]").val("");
-          $("#requestACall textarea[name=phone]").val("");
+          £cfResponse.html(data);
+          £cfsubmit.text(cfsubmitText);
+          £("#requestACall input[name=name]").val("");
+          £("#requestACall input[name=subject]").val("");
+          £("#requestACall textarea[name=phone]").val("");
         },
         error: function (data) {
           alert("Error occurd! Please try again");
@@ -558,29 +558,29 @@ console.log(
          Working Reservation Form
          ================================================================*/
 
-    $("#reservationForm").submit(function (e) {
+    £("#reservationForm").submit(function (e) {
       e.preventDefault();
-      var $ = jQuery;
+      var £ = jQuery;
 
-      var postData = $(this).serializeArray(),
-        formURL = $(this).attr("action"),
-        $cfResponse = $("#reservationFormResponse"),
-        $cfsubmit = $("#rfsubmit"),
-        cfsubmitText = $cfsubmit.text();
+      var postData = £(this).serializeArray(),
+        formURL = £(this).attr("action"),
+        £cfResponse = £("#reservationFormResponse"),
+        £cfsubmit = £("#rfsubmit"),
+        cfsubmitText = £cfsubmit.text();
 
-      $cfsubmit.text("Sending...");
+      £cfsubmit.text("Sending...");
 
-      $.ajax({
+      £.ajax({
         url: formURL,
         type: "POST",
         data: postData,
         success: function (data) {
-          $cfResponse.html(data);
-          $cfsubmit.text(cfsubmitText);
-          $("#reservationForm input[name=date]").val("");
-          $("#reservationForm input[name=time]").val("");
-          $("#reservationForm textarea[name=people]").val("");
-          $("#reservationForm textarea[name=email]").val("");
+          £cfResponse.html(data);
+          £cfsubmit.text(cfsubmitText);
+          £("#reservationForm input[name=date]").val("");
+          £("#reservationForm input[name=time]").val("");
+          £("#reservationForm textarea[name=people]").val("");
+          £("#reservationForm textarea[name=email]").val("");
         },
         error: function (data) {
           alert("Error occurd! Please try again");
@@ -594,14 +594,14 @@ console.log(
          * Subscribe form ajax
          /* ---------------------------------------------- */
 
-    $("#subscription-form").submit(function (e) {
+    £("#subscription-form").submit(function (e) {
       e.preventDefault();
-      var $form = $("#subscription-form");
-      var submit = $("#subscription-form-submit");
-      var ajaxResponse = $("#subscription-response");
-      var email = $("input#semail").val();
+      var £form = £("#subscription-form");
+      var submit = £("#subscription-form-submit");
+      var ajaxResponse = £("#subscription-response");
+      var email = £("input#semail").val();
 
-      $.ajax({
+      £.ajax({
         type: "POST",
         url: "assets/php/subscribe.php",
         dataType: "json",
@@ -616,7 +616,7 @@ console.log(
         success: function (result) {
           if (result.sendstatus == 1) {
             ajaxResponse.html(result.message);
-            $form.fadeOut(500);
+            £form.fadeOut(500);
           } else {
             ajaxResponse.html(result.message);
           }
@@ -630,7 +630,7 @@ console.log(
          * Google Map
          /* ---------------------------------------------- */
 
-    if ($("#map").length == 0 || typeof google == "undefined") return;
+    if (£("#map").length == 0 || typeof google == "undefined") return;
 
     // When the window has finished loading create our google map below
     google.maps.event.addDomListener(window, "load", init);

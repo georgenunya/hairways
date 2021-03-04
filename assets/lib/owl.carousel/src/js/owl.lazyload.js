@@ -5,7 +5,7 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 
 	/**
 	 * Creates the lazy plugin.
@@ -34,7 +34,7 @@
 		 * @type {Object}
 		 */
 		this._handlers = {
-			'initialized.owl.carousel change.owl.carousel resized.owl.carousel': $.proxy(function(e) {
+			'initialized.owl.carousel change.owl.carousel resized.owl.carousel': £.proxy(function(e) {
 				if (!e.namespace) {
 					return;
 				}
@@ -49,11 +49,11 @@
 						i = ((settings.center && n * -1) || 0),
 						position = (e.property && e.property.value !== undefined ? e.property.value : this._core.current()) + i,
 						clones = this._core.clones().length,
-						load = $.proxy(function(i, v) { this.load(v) }, this);
+						load = £.proxy(function(i, v) { this.load(v) }, this);
 
 					while (i++ < n) {
 						this.load(clones / 2 + this._core.relative(position));
-						clones && $.each(this._core.clones(this._core.relative(position)), load);
+						clones && £.each(this._core.clones(this._core.relative(position)), load);
 						position++;
 					}
 				}
@@ -61,10 +61,10 @@
 		};
 
 		// set the default options
-		this._core.options = $.extend({}, Lazy.Defaults, this._core.options);
+		this._core.options = £.extend({}, Lazy.Defaults, this._core.options);
 
 		// register event handler
-		this._core.$element.on(this._handlers);
+		this._core.£element.on(this._handlers);
 	};
 
 	/**
@@ -81,38 +81,38 @@
 	 * @protected
 	 */
 	Lazy.prototype.load = function(position) {
-		var $item = this._core.$stage.children().eq(position),
-			$elements = $item && $item.find('.owl-lazy');
+		var £item = this._core.£stage.children().eq(position),
+			£elements = £item && £item.find('.owl-lazy');
 
-		if (!$elements || $.inArray($item.get(0), this._loaded) > -1) {
+		if (!£elements || £.inArray(£item.get(0), this._loaded) > -1) {
 			return;
 		}
 
-		$elements.each($.proxy(function(index, element) {
-			var $element = $(element), image,
-				url = (window.devicePixelRatio > 1 && $element.attr('data-src-retina')) || $element.attr('data-src');
+		£elements.each(£.proxy(function(index, element) {
+			var £element = £(element), image,
+				url = (window.devicePixelRatio > 1 && £element.attr('data-src-retina')) || £element.attr('data-src');
 
-			this._core.trigger('load', { element: $element, url: url }, 'lazy');
+			this._core.trigger('load', { element: £element, url: url }, 'lazy');
 
-			if ($element.is('img')) {
-				$element.one('load.owl.lazy', $.proxy(function() {
-					$element.css('opacity', 1);
-					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+			if (£element.is('img')) {
+				£element.one('load.owl.lazy', £.proxy(function() {
+					£element.css('opacity', 1);
+					this._core.trigger('loaded', { element: £element, url: url }, 'lazy');
 				}, this)).attr('src', url);
 			} else {
 				image = new Image();
-				image.onload = $.proxy(function() {
-					$element.css({
+				image.onload = £.proxy(function() {
+					£element.css({
 						'background-image': 'url("' + url + '")',
 						'opacity': '1'
 					});
-					this._core.trigger('loaded', { element: $element, url: url }, 'lazy');
+					this._core.trigger('loaded', { element: £element, url: url }, 'lazy');
 				}, this);
 				image.src = url;
 			}
 		}, this));
 
-		this._loaded.push($item.get(0));
+		this._loaded.push(£item.get(0));
 	};
 
 	/**
@@ -123,13 +123,13 @@
 		var handler, property;
 
 		for (handler in this.handlers) {
-			this._core.$element.off(handler, this.handlers[handler]);
+			this._core.£element.off(handler, this.handlers[handler]);
 		}
 		for (property in Object.getOwnPropertyNames(this)) {
 			typeof this[property] != 'function' && (this[property] = null);
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
+	£.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
 
 })(window.Zepto || window.jQuery, window, document);

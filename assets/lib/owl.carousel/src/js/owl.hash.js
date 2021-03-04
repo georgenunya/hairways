@@ -5,7 +5,7 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 	'use strict';
 
 	/**
@@ -32,7 +32,7 @@
 		 * The carousel element.
 		 * @type {jQuery}
 		 */
-		this.$element = this._core.$element;
+		this.£element = this._core.£element;
 
 		/**
 		 * All event handlers.
@@ -40,14 +40,14 @@
 		 * @type {Object}
 		 */
 		this._handlers = {
-			'initialized.owl.carousel': $.proxy(function(e) {
+			'initialized.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.startPosition === 'URLHash') {
-					$(window).trigger('hashchange.owl.navigation');
+					£(window).trigger('hashchange.owl.navigation');
 				}
 			}, this),
-			'prepared.owl.carousel': $.proxy(function(e) {
+			'prepared.owl.carousel': £.proxy(function(e) {
 				if (e.namespace) {
-					var hash = $(e.content).find('[data-hash]').addBack('[data-hash]').attr('data-hash');
+					var hash = £(e.content).find('[data-hash]').addBack('[data-hash]').attr('data-hash');
 
 					if (!hash) {
 						return;
@@ -56,10 +56,10 @@
 					this._hashes[hash] = e.content;
 				}
 			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
+			'changed.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && e.property.name === 'position') {
 					var current = this._core.items(this._core.relative(this._core.current())),
-						hash = $.map(this._hashes, function(item, hash) {
+						hash = £.map(this._hashes, function(item, hash) {
 							return item === current ? hash : null;
 						}).join();
 
@@ -73,15 +73,15 @@
 		};
 
 		// set default options
-		this._core.options = $.extend({}, Hash.Defaults, this._core.options);
+		this._core.options = £.extend({}, Hash.Defaults, this._core.options);
 
 		// register the event handlers
-		this.$element.on(this._handlers);
+		this.£element.on(this._handlers);
 
 		// register event listener for hash navigation
-		$(window).on('hashchange.owl.navigation', $.proxy(function(e) {
+		£(window).on('hashchange.owl.navigation', £.proxy(function(e) {
 			var hash = window.location.hash.substring(1),
-				items = this._core.$stage.children(),
+				items = this._core.£stage.children(),
 				position = this._hashes[hash] && items.index(this._hashes[hash]);
 
 			if (position === undefined || position === this._core.current()) {
@@ -107,16 +107,16 @@
 	Hash.prototype.destroy = function() {
 		var handler, property;
 
-		$(window).off('hashchange.owl.navigation');
+		£(window).off('hashchange.owl.navigation');
 
 		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
+			this._core.£element.off(handler, this._handlers[handler]);
 		}
 		for (property in Object.getOwnPropertyNames(this)) {
 			typeof this[property] != 'function' && (this[property] = null);
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
+	£.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
 
 })(window.Zepto || window.jQuery, window, document);

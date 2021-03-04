@@ -154,7 +154,7 @@ function factory( window, EvEmitter ) {
 
 
 
-var $ = window.jQuery;
+var £ = window.jQuery;
 var console = window.console;
 
 // -------------------------- helpers -------------------------- //
@@ -217,9 +217,9 @@ function ImagesLoaded( elem, options, onAlways ) {
 
   this.getImages();
 
-  if ( $ ) {
+  if ( £ ) {
     // add jQuery Deferred object
-    this.jqDeferred = new $.Deferred();
+    this.jqDeferred = new £.Deferred();
   }
 
   // HACK check async to allow time to bind listeners
@@ -469,11 +469,11 @@ ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
     return;
   }
   // set local variable
-  $ = jQuery;
-  // $().imagesLoaded()
-  $.fn.imagesLoaded = function( options, callback ) {
+  £ = jQuery;
+  // £().imagesLoaded()
+  £.fn.imagesLoaded = function( options, callback ) {
     var instance = new ImagesLoaded( this, options, callback );
-    return instance.jqDeferred.promise( $(this) );
+    return instance.jqDeferred.promise( £(this) );
   };
 };
 // try making plugin

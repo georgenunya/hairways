@@ -7,10 +7,10 @@
  * Copyright (c) 2012 Alexander Brovikov
  * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
  */
-(function($) {
-    $.fn.appear = function(fn, options) {
+(function(£) {
+    £.fn.appear = function(fn, options) {
 
-        var settings = $.extend({
+        var settings = £.extend({
 
             //arbitrary data to pass to fn
             data: undefined,
@@ -26,7 +26,7 @@
 
         return this.each(function() {
 
-            var t = $(this);
+            var t = £(this);
 
             //whether the element is currently visible
             t.appeared = false;
@@ -38,7 +38,7 @@
                 return;
             }
 
-            var w = $(window);
+            var w = £(window);
 
             //fires the appear event when appropriate
             var check = function() {
@@ -91,8 +91,8 @@
 
                     //remove the check
                     w.unbind('scroll', check);
-                    var i = $.inArray(check, $.fn.appear.checks);
-                    if (i >= 0) $.fn.appear.checks.splice(i, 1);
+                    var i = £.inArray(check, £.fn.appear.checks);
+                    if (i >= 0) £.fn.appear.checks.splice(i, 1);
                 }
 
                 //trigger the original fn
@@ -107,7 +107,7 @@
             w.scroll(check);
 
             //check whenever the dom changes
-            $.fn.appear.checks.push(check);
+            £.fn.appear.checks.push(check);
 
             //check now
             (check)();
@@ -115,33 +115,33 @@
     };
 
     //keep a queue of appearance checks
-    $.extend($.fn.appear, {
+    £.extend(£.fn.appear, {
 
         checks: [],
         timeout: null,
 
         //process the queue
         checkAll: function() {
-            var length = $.fn.appear.checks.length;
-            if (length > 0) while (length--) ($.fn.appear.checks[length])();
+            var length = £.fn.appear.checks.length;
+            if (length > 0) while (length--) (£.fn.appear.checks[length])();
         },
 
         //check the queue asynchronously
         run: function() {
-            if ($.fn.appear.timeout) clearTimeout($.fn.appear.timeout);
-            $.fn.appear.timeout = setTimeout($.fn.appear.checkAll, 20);
+            if (£.fn.appear.timeout) clearTimeout(£.fn.appear.timeout);
+            £.fn.appear.timeout = setTimeout(£.fn.appear.checkAll, 20);
         }
     });
 
     //run checks when these methods are called
-    $.each(['append', 'prepend', 'after', 'before', 'attr',
+    £.each(['append', 'prepend', 'after', 'before', 'attr',
         'removeAttr', 'addClass', 'removeClass', 'toggleClass',
         'remove', 'css', 'show', 'hide'], function(i, n) {
-        var old = $.fn[n];
+        var old = £.fn[n];
         if (old) {
-            $.fn[n] = function() {
+            £.fn[n] = function() {
                 var r = old.apply(this, arguments);
-                $.fn.appear.run();
+                £.fn.appear.run();
                 return r;
             }
         }
@@ -167,16 +167,16 @@
 
 
 
-(function($) {
-    $.fn.countTo = function(options) {
+(function(£) {
+    £.fn.countTo = function(options) {
         // merge the default plugin settings with the custom options
-        options = $.extend({}, $.fn.countTo.defaults, options || {});
+        options = £.extend({}, £.fn.countTo.defaults, options || {});
 
         // how many times to update the value, and how much to increment the value on each update
         var loops = Math.ceil(options.speed / options.refreshInterval),
             increment = (options.to - options.from) / loops;
 
-        return $(this).each(function() {
+        return £(this).each(function() {
             var _this = this,
                 loopCount = 0,
                 value = options.from,
@@ -185,7 +185,7 @@
             function updateTimer() {
                 value += increment;
                 loopCount++;
-                $(_this).html(value.toFixed(options.decimals));
+                £(_this).html(value.toFixed(options.decimals));
 
                 if (typeof(options.onUpdate) == 'function') {
                     options.onUpdate.call(_this, value);
@@ -203,7 +203,7 @@
         });
     };
 
-    $.fn.countTo.defaults = {
+    £.fn.countTo.defaults = {
         from: 0,  // the number the element should start at
         to: 100,  // the number the element should end at
         speed: 1000,  // how long it should take to count between the target numbers

@@ -5,7 +5,7 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 	'use strict';
 
 	/**
@@ -53,7 +53,7 @@
 		 * The carousel element.
 		 * @type {jQuery}
 		 */
-		this.$element = this._core.$element;
+		this.£element = this._core.£element;
 
 		/**
 		 * Overridden methods of the carousel.
@@ -72,28 +72,28 @@
 		 * @type {Object}
 		 */
 		this._handlers = {
-			'prepared.owl.carousel': $.proxy(function(e) {
+			'prepared.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.dotsData) {
 					this._templates.push('<div class="' + this._core.settings.dotClass + '">' +
-						$(e.content).find('[data-dot]').addBack('[data-dot]').attr('data-dot') + '</div>');
+						£(e.content).find('[data-dot]').addBack('[data-dot]').attr('data-dot') + '</div>');
 				}
 			}, this),
-			'added.owl.carousel': $.proxy(function(e) {
+			'added.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.dotsData) {
 					this._templates.splice(e.position, 0, this._templates.pop());
 				}
 			}, this),
-			'remove.owl.carousel': $.proxy(function(e) {
+			'remove.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.dotsData) {
 					this._templates.splice(e.position, 1);
 				}
 			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
+			'changed.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && e.property.name == 'position') {
 					this.draw();
 				}
 			}, this),
-			'initialized.owl.carousel': $.proxy(function(e) {
+			'initialized.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && !this._initialized) {
 					this._core.trigger('initialize', null, 'navigation');
 					this.initialize();
@@ -103,7 +103,7 @@
 					this._core.trigger('initialized', null, 'navigation');
 				}
 			}, this),
-			'refreshed.owl.carousel': $.proxy(function(e) {
+			'refreshed.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._initialized) {
 					this._core.trigger('refresh', null, 'navigation');
 					this.update();
@@ -114,10 +114,10 @@
 		};
 
 		// set default options
-		this._core.options = $.extend({}, Navigation.Defaults, this._core.options);
+		this._core.options = £.extend({}, Navigation.Defaults, this._core.options);
 
 		// register event handlers
-		this.$element.on(this._handlers);
+		this.£element.on(this._handlers);
 	};
 
 	/**
@@ -152,38 +152,38 @@
 			settings = this._core.settings;
 
 		// create DOM structure for relative navigation
-		this._controls.$relative = (settings.navContainer ? $(settings.navContainer)
-			: $('<div>').addClass(settings.navContainerClass).appendTo(this.$element)).addClass('disabled');
+		this._controls.£relative = (settings.navContainer ? £(settings.navContainer)
+			: £('<div>').addClass(settings.navContainerClass).appendTo(this.£element)).addClass('disabled');
 
-		this._controls.$previous = $('<' + settings.navElement + '>')
+		this._controls.£previous = £('<' + settings.navElement + '>')
 			.addClass(settings.navClass[0])
 			.html(settings.navText[0])
-			.prependTo(this._controls.$relative)
-			.on('click', $.proxy(function(e) {
+			.prependTo(this._controls.£relative)
+			.on('click', £.proxy(function(e) {
 				this.prev(settings.navSpeed);
 			}, this));
-		this._controls.$next = $('<' + settings.navElement + '>')
+		this._controls.£next = £('<' + settings.navElement + '>')
 			.addClass(settings.navClass[1])
 			.html(settings.navText[1])
-			.appendTo(this._controls.$relative)
-			.on('click', $.proxy(function(e) {
+			.appendTo(this._controls.£relative)
+			.on('click', £.proxy(function(e) {
 				this.next(settings.navSpeed);
 			}, this));
 
 		// create DOM structure for absolute navigation
 		if (!settings.dotsData) {
-			this._templates = [ $('<div>')
+			this._templates = [ £('<div>')
 				.addClass(settings.dotClass)
-				.append($('<span>'))
+				.append(£('<span>'))
 				.prop('outerHTML') ];
 		}
 
-		this._controls.$absolute = (settings.dotsContainer ? $(settings.dotsContainer)
-			: $('<div>').addClass(settings.dotsClass).appendTo(this.$element)).addClass('disabled');
+		this._controls.£absolute = (settings.dotsContainer ? £(settings.dotsContainer)
+			: £('<div>').addClass(settings.dotsClass).appendTo(this.£element)).addClass('disabled');
 
-		this._controls.$absolute.on('click', 'div', $.proxy(function(e) {
-			var index = $(e.target).parent().is(this._controls.$absolute)
-				? $(e.target).index() : $(e.target).parent().index();
+		this._controls.£absolute.on('click', 'div', £.proxy(function(e) {
+			var index = £(e.target).parent().is(this._controls.£absolute)
+				? £(e.target).index() : £(e.target).parent().index();
 
 			e.preventDefault();
 
@@ -192,7 +192,7 @@
 
 		// override public methods of the carousel
 		for (override in this._overrides) {
-			this._core[override] = $.proxy(this[override], this);
+			this._core[override] = £.proxy(this[override], this);
 		}
 	};
 
@@ -204,7 +204,7 @@
 		var handler, control, property, override;
 
 		for (handler in this._handlers) {
-			this.$element.off(handler, this._handlers[handler]);
+			this.£element.off(handler, this._handlers[handler]);
 		}
 		for (control in this._controls) {
 			this._controls[control].remove();
@@ -265,28 +265,28 @@
 			index = this._core.relative(this._core.current()),
 			loop = settings.loop || settings.rewind;
 
-		this._controls.$relative.toggleClass('disabled', !settings.nav || disabled);
+		this._controls.£relative.toggleClass('disabled', !settings.nav || disabled);
 
 		if (settings.nav) {
-			this._controls.$previous.toggleClass('disabled', !loop && index <= this._core.minimum(true));
-			this._controls.$next.toggleClass('disabled', !loop && index >= this._core.maximum(true));
+			this._controls.£previous.toggleClass('disabled', !loop && index <= this._core.minimum(true));
+			this._controls.£next.toggleClass('disabled', !loop && index >= this._core.maximum(true));
 		}
 
-		this._controls.$absolute.toggleClass('disabled', !settings.dots || disabled);
+		this._controls.£absolute.toggleClass('disabled', !settings.dots || disabled);
 
 		if (settings.dots) {
-			difference = this._pages.length - this._controls.$absolute.children().length;
+			difference = this._pages.length - this._controls.£absolute.children().length;
 
 			if (settings.dotsData && difference !== 0) {
-				this._controls.$absolute.html(this._templates.join(''));
+				this._controls.£absolute.html(this._templates.join(''));
 			} else if (difference > 0) {
-				this._controls.$absolute.append(new Array(difference + 1).join(this._templates[0]));
+				this._controls.£absolute.append(new Array(difference + 1).join(this._templates[0]));
 			} else if (difference < 0) {
-				this._controls.$absolute.children().slice(difference).remove();
+				this._controls.£absolute.children().slice(difference).remove();
 			}
 
-			this._controls.$absolute.find('.active').removeClass('active');
-			this._controls.$absolute.children().eq($.inArray(this.current(), this._pages)).addClass('active');
+			this._controls.£absolute.find('.active').removeClass('active');
+			this._controls.£absolute.children().eq(£.inArray(this.current(), this._pages)).addClass('active');
 		}
 	};
 
@@ -299,7 +299,7 @@
 		var settings = this._core.settings;
 
 		event.page = {
-			index: $.inArray(this.current(), this._pages),
+			index: £.inArray(this.current(), this._pages),
 			count: this._pages.length,
 			size: settings && (settings.center || settings.autoWidth || settings.dotsData
 				? 1 : settings.dotsEach || settings.items)
@@ -313,7 +313,7 @@
 	 */
 	Navigation.prototype.current = function() {
 		var current = this._core.relative(this._core.current());
-		return $.grep(this._pages, $.proxy(function(page, index) {
+		return £.grep(this._pages, £.proxy(function(page, index) {
 			return page.start <= current && page.end >= current;
 		}, this)).pop();
 	};
@@ -328,7 +328,7 @@
 			settings = this._core.settings;
 
 		if (settings.slideBy == 'page') {
-			position = $.inArray(this.current(), this._pages);
+			position = £.inArray(this.current(), this._pages);
 			length = this._pages.length;
 			successor ? ++position : --position;
 			position = this._pages[((position % length) + length) % length].start;
@@ -347,7 +347,7 @@
 	 * @param {Number} [speed=false] - The time in milliseconds for the transition.
 	 */
 	Navigation.prototype.next = function(speed) {
-		$.proxy(this._overrides.to, this._core)(this.getPosition(true), speed);
+		£.proxy(this._overrides.to, this._core)(this.getPosition(true), speed);
 	};
 
 	/**
@@ -356,7 +356,7 @@
 	 * @param {Number} [speed=false] - The time in milliseconds for the transition.
 	 */
 	Navigation.prototype.prev = function(speed) {
-		$.proxy(this._overrides.to, this._core)(this.getPosition(false), speed);
+		£.proxy(this._overrides.to, this._core)(this.getPosition(false), speed);
 	};
 
 	/**
@@ -371,12 +371,12 @@
 
 		if (!standard && this._pages.length) {
 			length = this._pages.length;
-			$.proxy(this._overrides.to, this._core)(this._pages[((position % length) + length) % length].start, speed);
+			£.proxy(this._overrides.to, this._core)(this._pages[((position % length) + length) % length].start, speed);
 		} else {
-			$.proxy(this._overrides.to, this._core)(position, speed);
+			£.proxy(this._overrides.to, this._core)(position, speed);
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
+	£.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
 
 })(window.Zepto || window.jQuery, window, document);

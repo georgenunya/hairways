@@ -44,7 +44,7 @@
 var arraySlice = Array.prototype.slice;
 
 // helper function for logging errors
-// $.error breaks jQuery chaining
+// £.error breaks jQuery chaining
 var console = window.console;
 var logError = typeof console == 'undefined' ? function() {} :
   function( message ) {
@@ -53,45 +53,45 @@ var logError = typeof console == 'undefined' ? function() {} :
 
 // ----- jQueryBridget ----- //
 
-function jQueryBridget( namespace, PluginClass, $ ) {
-  $ = $ || jQuery || window.jQuery;
-  if ( !$ ) {
+function jQueryBridget( namespace, PluginClass, £ ) {
+  £ = £ || jQuery || window.jQuery;
+  if ( !£ ) {
     return;
   }
 
-  // add option method -> $().plugin('option', {...})
+  // add option method -> £().plugin('option', {...})
   if ( !PluginClass.prototype.option ) {
     // option setter
     PluginClass.prototype.option = function( opts ) {
       // bail out if not an object
-      if ( !$.isPlainObject( opts ) ){
+      if ( !£.isPlainObject( opts ) ){
         return;
       }
-      this.options = $.extend( true, this.options, opts );
+      this.options = £.extend( true, this.options, opts );
     };
   }
 
   // make jQuery plugin
-  $.fn[ namespace ] = function( arg0 /*, arg1 */ ) {
+  £.fn[ namespace ] = function( arg0 /*, arg1 */ ) {
     if ( typeof arg0 == 'string' ) {
-      // method call $().plugin( 'methodName', { options } )
+      // method call £().plugin( 'methodName', { options } )
       // shift arguments by 1
       var args = arraySlice.call( arguments, 1 );
       return methodCall( this, arg0, args );
     }
-    // just $().plugin({ options })
+    // just £().plugin({ options })
     plainCall( this, arg0 );
     return this;
   };
 
-  // $().plugin('methodName')
-  function methodCall( $elems, methodName, args ) {
+  // £().plugin('methodName')
+  function methodCall( £elems, methodName, args ) {
     var returnValue;
-    var pluginMethodStr = '$().' + namespace + '("' + methodName + '")';
+    var pluginMethodStr = '£().' + namespace + '("' + methodName + '")';
 
-    $elems.each( function( i, elem ) {
+    £elems.each( function( i, elem ) {
       // get instance
-      var instance = $.data( elem, namespace );
+      var instance = £.data( elem, namespace );
       if ( !instance ) {
         logError( namespace + ' not initialized. Cannot call methods, i.e. ' +
           pluginMethodStr );
@@ -110,12 +110,12 @@ function jQueryBridget( namespace, PluginClass, $ ) {
       returnValue = returnValue === undefined ? value : returnValue;
     });
 
-    return returnValue !== undefined ? returnValue : $elems;
+    return returnValue !== undefined ? returnValue : £elems;
   }
 
-  function plainCall( $elems, options ) {
-    $elems.each( function( i, elem ) {
-      var instance = $.data( elem, namespace );
+  function plainCall( £elems, options ) {
+    £elems.each( function( i, elem ) {
+      var instance = £.data( elem, namespace );
       if ( instance ) {
         // set options & init
         instance.option( options );
@@ -123,23 +123,23 @@ function jQueryBridget( namespace, PluginClass, $ ) {
       } else {
         // initialize new instance
         instance = new PluginClass( elem, options );
-        $.data( elem, namespace, instance );
+        £.data( elem, namespace, instance );
       }
     });
   }
 
-  updateJQuery( $ );
+  updateJQuery( £ );
 
 }
 
 // ----- updateJQuery ----- //
 
-// set $.bridget for v1 backwards compatibility
-function updateJQuery( $ ) {
-  if ( !$ || ( $ && $.bridget ) ) {
+// set £.bridget for v1 backwards compatibility
+function updateJQuery( £ ) {
+  if ( !£ || ( £ && £.bridget ) ) {
     return;
   }
-  $.bridget = jQueryBridget;
+  £.bridget = jQueryBridget;
 }
 
 updateJQuery( jQuery || window.jQuery );
@@ -708,8 +708,8 @@ utils.docReady = function( callback ) {
 
 // http://jamesroberts.name/blog/2010/02/22/string-functions-for-javascript-trim-to-camel-case-to-dashed-and-to-underscore/
 utils.toDashed = function( str ) {
-  return str.replace( /(.)([A-Z])/g, function( match, $1, $2 ) {
-    return $1 + '-' + $2;
+  return str.replace( /(.)([A-Z])/g, function( match, £1, £2 ) {
+    return £1 + '-' + £2;
   }).toLowerCase();
 };
 
@@ -746,7 +746,7 @@ utils.htmlInit = function( WidgetClass, namespace ) {
       }
       // initialize
       var instance = new WidgetClass( elem, options );
-      // make available via $().data('layoutname')
+      // make available via £().data('layoutname')
       if ( jQuery ) {
         jQuery.data( elem, namespace, instance );
       }
@@ -1081,8 +1081,8 @@ proto.transition = function( args ) {
 // dash before all cap letters, including first for
 // WebkitTransform => -webkit-transform
 function toDashedAll( str ) {
-  return str.replace( /([A-Z])/g, function( $1 ) {
-    return '-' + $1.toLowerCase();
+  return str.replace( /([A-Z])/g, function( £1 ) {
+    return '-' + £1.toLowerCase();
   });
 }
 
@@ -1391,7 +1391,7 @@ function Outlayer( element, options ) {
   this.element = queryElement;
   // add jQuery
   if ( jQuery ) {
-    this.$element = jQuery( this.element );
+    this.£element = jQuery( this.element );
   }
 
   // options
@@ -1792,16 +1792,16 @@ proto.dispatchEvent = function( type, event, args ) {
   this.emitEvent( type, emitArgs );
 
   if ( jQuery ) {
-    // set this.$element
-    this.$element = this.$element || jQuery( this.element );
+    // set this.£element
+    this.£element = this.£element || jQuery( this.element );
     if ( event ) {
       // create jQuery event
-      var $event = jQuery.Event( event );
-      $event.type = type;
-      this.$element.trigger( $event, args );
+      var £event = jQuery.Event( event );
+      £event.type = type;
+      this.£element.trigger( £event, args );
     } else {
       // just trigger with type if no event available
-      this.$element.trigger( type, args );
+      this.£element.trigger( type, args );
     }
   }
 };

@@ -10,7 +10,7 @@
  * @todo Test Zepto
  * @todo stagePadding calculate wrong active classes
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 
 	/**
 	 * Creates a carousel.
@@ -31,13 +31,13 @@
 		 * Current options set by the caller including defaults.
 		 * @public
 		 */
-		this.options = $.extend({}, Owl.Defaults, options);
+		this.options = £.extend({}, Owl.Defaults, options);
 
 		/**
 		 * Plugin element.
 		 * @public
 		 */
-		this.$element = $(element);
+		this.£element = £(element);
 
 		/**
 		 * Proxied event handlers.
@@ -154,19 +154,19 @@
 			}
 		};
 
-		$.each([ 'onResize', 'onThrottledResize' ], $.proxy(function(i, handler) {
-			this._handlers[handler] = $.proxy(this[handler], this);
+		£.each([ 'onResize', 'onThrottledResize' ], £.proxy(function(i, handler) {
+			this._handlers[handler] = £.proxy(this[handler], this);
 		}, this));
 
-		$.each(Owl.Plugins, $.proxy(function(key, plugin) {
+		£.each(Owl.Plugins, £.proxy(function(key, plugin) {
 			this._plugins[key.charAt(0).toLowerCase() + key.slice(1)]
 				= new plugin(this);
 		}, this));
 
-		$.each(Owl.Workers, $.proxy(function(priority, worker) {
+		£.each(Owl.Workers, £.proxy(function(priority, worker) {
 			this._pipe.push({
 				'filter': worker.filter,
-				'run': $.proxy(worker.run, this)
+				'run': £.proxy(worker.run, this)
 			});
 		}, this));
 
@@ -262,7 +262,7 @@
 	Owl.Workers = [ {
 		filter: [ 'width', 'settings' ],
 		run: function() {
-			this._width = this.$element.width();
+			this._width = this.£element.width();
 		}
 	}, {
 		filter: [ 'width', 'items', 'settings' ],
@@ -272,7 +272,7 @@
 	}, {
 		filter: [ 'items', 'settings' ],
 		run: function() {
-			this.$stage.children('.cloned').remove();
+			this.£stage.children('.cloned').remove();
 		}
 	}, {
 		filter: [ 'width', 'items', 'settings' ],
@@ -286,7 +286,7 @@
 					'margin-right': rtl ? '' : margin
 				};
 
-			!grid && this.$stage.children().css(css);
+			!grid && this.£stage.children().css(css);
 
 			cache.css = css;
 		}
@@ -340,8 +340,8 @@
 
 			this._clones = clones;
 
-			$(append).addClass('cloned').appendTo(this.$stage);
-			$(prepend).addClass('cloned').prependTo(this.$stage);
+			£(append).addClass('cloned').appendTo(this.£stage);
+			£(prepend).addClass('cloned').prependTo(this.£stage);
 		}
 	}, {
 		filter: [ 'width', 'items', 'settings' ],
@@ -372,14 +372,14 @@
 					'padding-right': padding || ''
 				};
 
-			this.$stage.css(css);
+			this.£stage.css(css);
 		}
 	}, {
 		filter: [ 'width', 'items', 'settings' ],
 		run: function(cache) {
 			var iterator = this._coordinates.length,
 				grid = !this.settings.autoWidth,
-				items = this.$stage.children();
+				items = this.£stage.children();
 
 			if (grid && cache.items.merge) {
 				while (iterator--) {
@@ -394,12 +394,12 @@
 	}, {
 		filter: [ 'items' ],
 		run: function() {
-			this._coordinates.length < 1 && this.$stage.removeAttr('style');
+			this._coordinates.length < 1 && this.£stage.removeAttr('style');
 		}
 	}, {
 		filter: [ 'width', 'items', 'settings' ],
 		run: function(cache) {
-			cache.current = cache.current ? this.$stage.children().index(cache.current) : 0;
+			cache.current = cache.current ? this.£stage.children().index(cache.current) : 0;
 			cache.current = Math.max(this.minimum(), Math.min(this.maximum(), cache.current));
 			this.reset(cache.current);
 		}
@@ -427,12 +427,12 @@
 				}
 			}
 
-			this.$stage.children('.active').removeClass('active');
-			this.$stage.children(':eq(' + matches.join('), :eq(') + ')').addClass('active');
+			this.£stage.children('.active').removeClass('active');
+			this.£stage.children(':eq(' + matches.join('), :eq(') + ')').addClass('active');
 
 			if (this.settings.center) {
-				this.$stage.children('.center').removeClass('center');
-				this.$stage.children().eq(this.current()).addClass('center');
+				this.£stage.children('.center').removeClass('center');
+				this.£stage.children().eq(this.current()).addClass('center');
 			}
 		}
 	} ];
@@ -445,33 +445,33 @@
 		this.enter('initializing');
 		this.trigger('initialize');
 
-		this.$element.toggleClass(this.settings.rtlClass, this.settings.rtl);
+		this.£element.toggleClass(this.settings.rtlClass, this.settings.rtl);
 
 		if (this.settings.autoWidth && !this.is('pre-loading')) {
 			var imgs, nestedSelector, width;
-			imgs = this.$element.find('img');
+			imgs = this.£element.find('img');
 			nestedSelector = this.settings.nestedItemSelector ? '.' + this.settings.nestedItemSelector : undefined;
-			width = this.$element.children(nestedSelector).width();
+			width = this.£element.children(nestedSelector).width();
 
 			if (imgs.length && width <= 0) {
 				this.preloadAutoWidthImages(imgs);
 			}
 		}
 
-		this.$element.addClass(this.options.loadingClass);
+		this.£element.addClass(this.options.loadingClass);
 
 		// create stage
-		this.$stage = $('<' + this.settings.stageElement + ' class="' + this.settings.stageClass + '"/>')
+		this.£stage = £('<' + this.settings.stageElement + ' class="' + this.settings.stageClass + '"/>')
 			.wrap('<div class="' + this.settings.stageOuterClass + '"/>');
 
 		// append stage
-		this.$element.append(this.$stage.parent());
+		this.£element.append(this.£stage.parent());
 
 		// append content
-		this.replace(this.$element.children().not(this.$stage.parent()));
+		this.replace(this.£element.children().not(this.£stage.parent()));
 
 		// check visibility
-		if (this.$element.is(':visible')) {
+		if (this.£element.is(':visible')) {
 			// update view
 			this.refresh();
 		} else {
@@ -479,7 +479,7 @@
 			this.invalidate('width');
 		}
 
-		this.$element
+		this.£element
 			.removeClass(this.options.loadingClass)
 			.addClass(this.options.loadedClass);
 
@@ -503,15 +503,15 @@
 			settings = null;
 
 		if (!overwrites) {
-			settings = $.extend({}, this.options);
+			settings = £.extend({}, this.options);
 		} else {
-			$.each(overwrites, function(breakpoint) {
+			£.each(overwrites, function(breakpoint) {
 				if (breakpoint <= viewport && breakpoint > match) {
 					match = Number(breakpoint);
 				}
 			});
 
-			settings = $.extend({}, this.options, overwrites[match]);
+			settings = £.extend({}, this.options, overwrites[match]);
 			if (typeof settings.stagePadding === 'function') {
 				settings.stagePadding = settings.stagePadding();
 			}
@@ -519,8 +519,8 @@
 
 			// responsive class
 			if (settings.responsiveClass) {
-				this.$element.attr('class',
-					this.$element.attr('class').replace(new RegExp('(' + this.options.responsiveClass + '-)\\S+\\s', 'g'), '$1' + match)
+				this.£element.attr('class',
+					this.£element.attr('class').replace(new RegExp('(' + this.options.responsiveClass + '-)\\S+\\s', 'g'), '£1' + match)
 				);
 			}
 		}
@@ -553,7 +553,7 @@
 		var event = this.trigger('prepare', { content: item });
 
 		if (!event.data) {
-			event.data = $('<' + this.settings.itemElement + '/>')
+			event.data = £('<' + this.settings.itemElement + '/>')
 				.addClass(this.options.itemClass).append(item)
 		}
 
@@ -569,11 +569,11 @@
 	Owl.prototype.update = function() {
 		var i = 0,
 			n = this._pipe.length,
-			filter = $.proxy(function(p) { return this[p] }, this._invalidated),
+			filter = £.proxy(function(p) { return this[p] }, this._invalidated),
 			cache = {};
 
 		while (i < n) {
-			if (this._invalidated.all || $.grep(this._pipe[i].filter, filter).length > 0) {
+			if (this._invalidated.all || £.grep(this._pipe[i].filter, filter).length > 0) {
 				this._pipe[i].run(cache);
 			}
 			i++;
@@ -613,11 +613,11 @@
 
 		this.optionsLogic();
 
-		this.$element.addClass(this.options.refreshClass);
+		this.£element.addClass(this.options.refreshClass);
 
 		this.update();
 
-		this.$element.removeClass(this.options.refreshClass);
+		this.£element.removeClass(this.options.refreshClass);
 
 		this.leave('refreshing');
 		this.trigger('refreshed');
@@ -641,11 +641,11 @@
 			return false;
 		}
 
-		if (this._width === this.$element.width()) {
+		if (this._width === this.£element.width()) {
 			return false;
 		}
 
-		if (!this.$element.is(':visible')) {
+		if (!this.£element.is(':visible')) {
 			return false;
 		}
 
@@ -671,8 +671,8 @@
 	 * @protected
 	 */
 	Owl.prototype.registerEventHandlers = function() {
-		if ($.support.transition) {
-			this.$stage.on($.support.transition.end + '.owl.core', $.proxy(this.onTransitionEnd, this));
+		if (£.support.transition) {
+			this.£stage.on(£.support.transition.end + '.owl.core', £.proxy(this.onTransitionEnd, this));
 		}
 
 		if (this.settings.responsive !== false) {
@@ -680,14 +680,14 @@
 		}
 
 		if (this.settings.mouseDrag) {
-			this.$element.addClass(this.options.dragClass);
-			this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
-			this.$stage.on('dragstart.owl.core selectstart.owl.core', function() { return false });
+			this.£element.addClass(this.options.dragClass);
+			this.£stage.on('mousedown.owl.core', £.proxy(this.onDragStart, this));
+			this.£stage.on('dragstart.owl.core selectstart.owl.core', function() { return false });
 		}
 
 		if (this.settings.touchDrag){
-			this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
-			this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
+			this.£stage.on('touchstart.owl.core', £.proxy(this.onDragStart, this));
+			this.£stage.on('touchcancel.owl.core', £.proxy(this.onDragEnd, this));
 		}
 	};
 
@@ -705,43 +705,43 @@
 			return;
 		}
 
-		if ($.support.transform) {
-			stage = this.$stage.css('transform').replace(/.*\(|\)| /g, '').split(',');
+		if (£.support.transform) {
+			stage = this.£stage.css('transform').replace(/.*\(|\)| /g, '').split(',');
 			stage = {
 				x: stage[stage.length === 16 ? 12 : 4],
 				y: stage[stage.length === 16 ? 13 : 5]
 			};
 		} else {
-			stage = this.$stage.position();
+			stage = this.£stage.position();
 			stage = {
 				x: this.settings.rtl ?
-					stage.left + this.$stage.width() - this.width() + this.settings.margin :
+					stage.left + this.£stage.width() - this.width() + this.settings.margin :
 					stage.left,
 				y: stage.top
 			};
 		}
 
 		if (this.is('animating')) {
-			$.support.transform ? this.animate(stage.x) : this.$stage.stop()
+			£.support.transform ? this.animate(stage.x) : this.£stage.stop()
 			this.invalidate('position');
 		}
 
-		this.$element.toggleClass(this.options.grabClass, event.type === 'mousedown');
+		this.£element.toggleClass(this.options.grabClass, event.type === 'mousedown');
 
 		this.speed(0);
 
 		this._drag.time = new Date().getTime();
-		this._drag.target = $(event.target);
+		this._drag.target = £(event.target);
 		this._drag.stage.start = stage;
 		this._drag.stage.current = stage;
 		this._drag.pointer = this.pointer(event);
 
-		$(document).on('mouseup.owl.core touchend.owl.core', $.proxy(this.onDragEnd, this));
+		£(document).on('mouseup.owl.core touchend.owl.core', £.proxy(this.onDragEnd, this));
 
-		$(document).one('mousemove.owl.core touchmove.owl.core', $.proxy(function(event) {
+		£(document).one('mousemove.owl.core touchmove.owl.core', £.proxy(function(event) {
 			var delta = this.difference(this._drag.pointer, this.pointer(event));
 
-			$(document).on('mousemove.owl.core touchmove.owl.core', $.proxy(this.onDragMove, this));
+			£(document).on('mousemove.owl.core touchmove.owl.core', £.proxy(this.onDragMove, this));
 
 			if (Math.abs(delta.x) < Math.abs(delta.y) && this.is('valid')) {
 				return;
@@ -801,9 +801,9 @@
 			stage = this._drag.stage.current,
 			direction = delta.x > 0 ^ this.settings.rtl ? 'left' : 'right';
 
-		$(document).off('.owl.core');
+		£(document).off('.owl.core');
 
-		this.$element.removeClass(this.options.grabClass);
+		this.£element.removeClass(this.options.grabClass);
 
 		if (delta.x !== 0 && this.is('dragging') || !this.is('valid')) {
 			this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed);
@@ -842,7 +842,7 @@
 
 		if (!this.settings.freeDrag) {
 			// check closest item
-			$.each(coordinates, $.proxy(function(index, value) {
+			£.each(coordinates, £.proxy(function(index, value) {
 				// on a left pull, check on current index
 				if (direction === 'left' && coordinate > value - pull && coordinate < value + pull) {
 					position = index;
@@ -886,17 +886,17 @@
 			this.trigger('translate');
 		}
 
-		if ($.support.transform3d && $.support.transition) {
-			this.$stage.css({
+		if (£.support.transform3d && £.support.transition) {
+			this.£stage.css({
 				transform: 'translate3d(' + coordinate + 'px,0px,0px)',
 				transition: (this.speed() / 1000) + 's'
 			});
 		} else if (animate) {
-			this.$stage.animate({
+			this.£stage.animate({
 				left: coordinate + 'px'
-			}, this.speed(), this.settings.fallbackEasing, $.proxy(this.onTransitionEnd, this));
+			}, this.speed(), this.settings.fallbackEasing, £.proxy(this.onTransitionEnd, this));
 		} else {
-			this.$stage.css({
+			this.£stage.css({
 				left: coordinate + 'px'
 			});
 		}
@@ -951,11 +951,11 @@
 	 * @returns {Array.<String>} - The invalidated parts.
 	 */
 	Owl.prototype.invalidate = function(part) {
-		if ($.type(part) === 'string') {
+		if (£.type(part) === 'string') {
 			this._invalidated[part] = true;
 			this.is('valid') && this.leave('valid');
 		}
-		return $.map(this._invalidated, function(v, i) { return i });
+		return £.map(this._invalidated, function(v, i) { return i });
 	};
 
 	/**
@@ -1029,7 +1029,7 @@
 		} else if (settings.autoWidth || settings.merge) {
 			iterator = this._items.length;
 			reciprocalItemsWidth = this._items[--iterator].width();
-			elementWidth = this.$element.width();
+			elementWidth = this.£element.width();
 			while (iterator--) {
 				reciprocalItemsWidth += this._items[iterator].width() + this.settings.margin;
 				if (reciprocalItemsWidth > elementWidth) {
@@ -1102,10 +1102,10 @@
 			map = function(index) { return index % 2 === 0 ? even + index / 2 : odd - (index + 1) / 2 };
 
 		if (position === undefined) {
-			return $.map(this._clones, function(v, i) { return map(i) });
+			return £.map(this._clones, function(v, i) { return map(i) });
 		}
 
-		return $.map(this._clones, function(v, i) { return v === position ? map(i) : null });
+		return £.map(this._clones, function(v, i) { return v === position ? map(i) : null });
 	};
 
 	/**
@@ -1135,7 +1135,7 @@
 			coordinate;
 
 		if (position === undefined) {
-			return $.map(this._coordinates, $.proxy(function(coordinate, index) {
+			return £.map(this._coordinates, £.proxy(function(coordinate, index) {
 				return this.coordinates(index);
 			}, this));
 		}
@@ -1211,7 +1211,7 @@
 		this.speed(this.duration(current, position, speed));
 		this.current(position);
 
-		if (this.$element.is(':visible')) {
+		if (this.£element.is(':visible')) {
 			this.update();
 		}
 	};
@@ -1248,7 +1248,7 @@
 			event.stopPropagation();
 
 			// Catch only owl-stage transitionEnd event
-			if ((event.target || event.srcElement || event.originalTarget) !== this.$stage.get(0)) {
+			if ((event.target || event.srcElement || event.originalTarget) !== this.£stage.get(0)) {
 				return false;
 			}
 		}
@@ -1265,7 +1265,7 @@
 	Owl.prototype.viewport = function() {
 		var width;
 		if (this.options.responsiveBaseElement !== window) {
-			width = $(this.options.responsiveBaseElement).width();
+			width = £(this.options.responsiveBaseElement).width();
 		} else if (window.innerWidth) {
 			width = window.innerWidth;
 		} else if (document.documentElement && document.documentElement.clientWidth) {
@@ -1282,11 +1282,11 @@
 	 * @param {HTMLElement|jQuery|String} content - The new content.
 	 */
 	Owl.prototype.replace = function(content) {
-		this.$stage.empty();
+		this.£stage.empty();
 		this._items = [];
 
 		if (content) {
-			content = (content instanceof jQuery) ? content : $(content);
+			content = (content instanceof jQuery) ? content : £(content);
 		}
 
 		if (this.settings.nestedItemSelector) {
@@ -1295,9 +1295,9 @@
 
 		content.filter(function() {
 			return this.nodeType === 1;
-		}).each($.proxy(function(index, item) {
+		}).each(£.proxy(function(index, item) {
 			item = this.prepare(item);
-			this.$stage.append(item);
+			this.£stage.append(item);
 			this._items.push(item);
 			this._mergers.push(item.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
 		}, this));
@@ -1318,14 +1318,14 @@
 		var current = this.relative(this._current);
 
 		position = position === undefined ? this._items.length : this.normalize(position, true);
-		content = content instanceof jQuery ? content : $(content);
+		content = content instanceof jQuery ? content : £(content);
 
 		this.trigger('add', { content: content, position: position });
 
 		content = this.prepare(content);
 
 		if (this._items.length === 0 || position === this._items.length) {
-			this._items.length === 0 && this.$stage.append(content);
+			this._items.length === 0 && this.£stage.append(content);
 			this._items.length !== 0 && this._items[position - 1].after(content);
 			this._items.push(content);
 			this._mergers.push(content.find('[data-merge]').addBack('[data-merge]').attr('data-merge') * 1 || 1);
@@ -1372,10 +1372,10 @@
 	 * @protected
 	 */
 	Owl.prototype.preloadAutoWidthImages = function(images) {
-		images.each($.proxy(function(i, element) {
+		images.each(£.proxy(function(i, element) {
 			this.enter('pre-loading');
-			element = $(element);
-			$(new Image()).one('load', $.proxy(function(e) {
+			element = £(element);
+			£(new Image()).one('load', £.proxy(function(e) {
 				element.attr('src', e.target.src);
 				element.css('opacity', 1);
 				this.leave('pre-loading');
@@ -1390,9 +1390,9 @@
 	 */
 	Owl.prototype.destroy = function() {
 
-		this.$element.off('.owl.core');
-		this.$stage.off('.owl.core');
-		$(document).off('.owl.core');
+		this.£element.off('.owl.core');
+		this.£stage.off('.owl.core');
+		£(document).off('.owl.core');
 
 		if (this.settings.responsive !== false) {
 			window.clearTimeout(this.resizeTimer);
@@ -1403,20 +1403,20 @@
 			this._plugins[i].destroy();
 		}
 
-		this.$stage.children('.cloned').remove();
+		this.£stage.children('.cloned').remove();
 
-		this.$stage.unwrap();
-		this.$stage.children().contents().unwrap();
-		this.$stage.children().unwrap();
+		this.£stage.unwrap();
+		this.£stage.children().contents().unwrap();
+		this.£stage.children().unwrap();
 
-		this.$element
+		this.£element
 			.removeClass(this.options.refreshClass)
 			.removeClass(this.options.loadingClass)
 			.removeClass(this.options.loadedClass)
 			.removeClass(this.options.rtlClass)
 			.removeClass(this.options.dragClass)
 			.removeClass(this.options.grabClass)
-			.attr('class', this.$element.attr('class').replace(new RegExp(this.options.responsiveClass + '-\\S+\\s', 'g'), ''))
+			.attr('class', this.£element.attr('class').replace(new RegExp(this.options.responsiveClass + '-\\S+\\s', 'g'), ''))
 			.removeData('owl.carousel');
 	};
 
@@ -1489,23 +1489,23 @@
 	Owl.prototype.trigger = function(name, data, namespace, state, enter) {
 		var status = {
 			item: { count: this._items.length, index: this.current() }
-		}, handler = $.camelCase(
-			$.grep([ 'on', name, namespace ], function(v) { return v })
+		}, handler = £.camelCase(
+			£.grep([ 'on', name, namespace ], function(v) { return v })
 				.join('-').toLowerCase()
-		), event = $.Event(
+		), event = £.Event(
 			[ name, 'owl', namespace || 'carousel' ].join('.').toLowerCase(),
-			$.extend({ relatedTarget: this }, status, data)
+			£.extend({ relatedTarget: this }, status, data)
 		);
 
 		if (!this._supress[name]) {
-			$.each(this._plugins, function(name, plugin) {
+			£.each(this._plugins, function(name, plugin) {
 				if (plugin.onTrigger) {
 					plugin.onTrigger(event);
 				}
 			});
 
 			this.register({ type: Owl.Type.Event, name: name });
-			this.$element.trigger(event);
+			this.£element.trigger(event);
 
 			if (this.settings && typeof this.settings[handler] === 'function') {
 				this.settings[handler].call(this, event);
@@ -1520,7 +1520,7 @@
 	 * @param name - The state name.
 	 */
 	Owl.prototype.enter = function(name) {
-		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
+		£.each([ name ].concat(this._states.tags[name] || []), £.proxy(function(i, name) {
 			if (this._states.current[name] === undefined) {
 				this._states.current[name] = 0;
 			}
@@ -1534,7 +1534,7 @@
 	 * @param name - The state name.
 	 */
 	Owl.prototype.leave = function(name) {
-		$.each([ name ].concat(this._states.tags[name] || []), $.proxy(function(i, name) {
+		£.each([ name ].concat(this._states.tags[name] || []), £.proxy(function(i, name) {
 			this._states.current[name]--;
 		}, this));
 	};
@@ -1546,19 +1546,19 @@
 	 */
 	Owl.prototype.register = function(object) {
 		if (object.type === Owl.Type.Event) {
-			if (!$.event.special[object.name]) {
-				$.event.special[object.name] = {};
+			if (!£.event.special[object.name]) {
+				£.event.special[object.name] = {};
 			}
 
-			if (!$.event.special[object.name].owl) {
-				var _default = $.event.special[object.name]._default;
-				$.event.special[object.name]._default = function(e) {
+			if (!£.event.special[object.name].owl) {
+				var _default = £.event.special[object.name]._default;
+				£.event.special[object.name]._default = function(e) {
 					if (_default && _default.apply && (!e.namespace || e.namespace.indexOf('owl') === -1)) {
 						return _default.apply(this, arguments);
 					}
 					return e.namespace && e.namespace.indexOf('owl') > -1;
 				};
-				$.event.special[object.name].owl = true;
+				£.event.special[object.name].owl = true;
 			}
 		} else if (object.type === Owl.Type.State) {
 			if (!this._states.tags[object.name]) {
@@ -1567,8 +1567,8 @@
 				this._states.tags[object.name] = this._states.tags[object.name].concat(object.tags);
 			}
 
-			this._states.tags[object.name] = $.grep(this._states.tags[object.name], $.proxy(function(tag, i) {
-				return $.inArray(tag, this._states.tags[object.name]) === i;
+			this._states.tags[object.name] = £.grep(this._states.tags[object.name], £.proxy(function(tag, i) {
+				return £.inArray(tag, this._states.tags[object.name]) === i;
 			}, this));
 		}
 	};
@@ -1579,7 +1579,7 @@
 	 * @param {Array.<String>} events - The events to suppress.
 	 */
 	Owl.prototype.suppress = function(events) {
-		$.each(events, $.proxy(function(index, event) {
+		£.each(events, £.proxy(function(index, event) {
 			this._supress[event] = true;
 		}, this));
 	};
@@ -1590,7 +1590,7 @@
 	 * @param {Array.<String>} events - The events to release.
 	 */
 	Owl.prototype.release = function(events) {
-		$.each(events, $.proxy(function(index, event) {
+		£.each(events, £.proxy(function(index, event) {
 			delete this._supress[event];
 		}, this));
 	};
@@ -1652,22 +1652,22 @@
 	 * @todo Navigation plugin `next` and `prev`
 	 * @public
 	 */
-	$.fn.owlCarousel = function(option) {
+	£.fn.owlCarousel = function(option) {
 		var args = Array.prototype.slice.call(arguments, 1);
 
 		return this.each(function() {
-			var $this = $(this),
-				data = $this.data('owl.carousel');
+			var £this = £(this),
+				data = £this.data('owl.carousel');
 
 			if (!data) {
 				data = new Owl(this, typeof option == 'object' && option);
-				$this.data('owl.carousel', data);
+				£this.data('owl.carousel', data);
 
-				$.each([
+				£.each([
 					'next', 'prev', 'to', 'destroy', 'refresh', 'replace', 'add', 'remove'
 				], function(i, event) {
 					data.register({ type: Owl.Type.Event, name: event });
-					data.$element.on(event + '.owl.carousel.core', $.proxy(function(e) {
+					data.£element.on(event + '.owl.carousel.core', £.proxy(function(e) {
 						if (e.namespace && e.relatedTarget !== this) {
 							this.suppress([ event ]);
 							data[event].apply(this, [].slice.call(arguments, 1));
@@ -1687,6 +1687,6 @@
 	 * The constructor for the jQuery Plugin
 	 * @public
 	 */
-	$.fn.owlCarousel.Constructor = Owl;
+	£.fn.owlCarousel.Constructor = Owl;
 
 })(window.Zepto || window.jQuery, window, document);

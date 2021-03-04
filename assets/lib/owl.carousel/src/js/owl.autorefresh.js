@@ -5,7 +5,7 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 
 	/**
 	 * Creates the auto refresh plugin.
@@ -40,7 +40,7 @@
 		 * @type {Object}
 		 */
 		this._handlers = {
-			'initialized.owl.carousel': $.proxy(function(e) {
+			'initialized.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.autoRefresh) {
 					this.watch();
 				}
@@ -48,10 +48,10 @@
 		};
 
 		// set default options
-		this._core.options = $.extend({}, AutoRefresh.Defaults, this._core.options);
+		this._core.options = £.extend({}, AutoRefresh.Defaults, this._core.options);
 
 		// register event handlers
-		this._core.$element.on(this._handlers);
+		this._core.£element.on(this._handlers);
 	};
 
 	/**
@@ -71,21 +71,21 @@
 			return;
 		}
 
-		this._visible = this._core.$element.is(':visible');
-		this._interval = window.setInterval($.proxy(this.refresh, this), this._core.settings.autoRefreshInterval);
+		this._visible = this._core.£element.is(':visible');
+		this._interval = window.setInterval(£.proxy(this.refresh, this), this._core.settings.autoRefreshInterval);
 	};
 
 	/**
 	 * Refreshes the element.
 	 */
 	AutoRefresh.prototype.refresh = function() {
-		if (this._core.$element.is(':visible') === this._visible) {
+		if (this._core.£element.is(':visible') === this._visible) {
 			return;
 		}
 
 		this._visible = !this._visible;
 
-		this._core.$element.toggleClass('owl-hidden', !this._visible);
+		this._core.£element.toggleClass('owl-hidden', !this._visible);
 
 		this._visible && (this._core.invalidate('width') && this._core.refresh());
 	};
@@ -99,13 +99,13 @@
 		window.clearInterval(this._interval);
 
 		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
+			this._core.£element.off(handler, this._handlers[handler]);
 		}
 		for (property in Object.getOwnPropertyNames(this)) {
 			typeof this[property] != 'function' && (this[property] = null);
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
+	£.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
 
 })(window.Zepto || window.jQuery, window, document);

@@ -11,7 +11,7 @@ test('replace without loop', function() {
 });
 
 function before_and_after_replace(options) {
-	var simple = $('#simple'),
+	var simple = £('#simple'),
 		replacement = simple.html(),
 		expected = null;
 	
@@ -38,7 +38,7 @@ test('remove without loop', function() {
 });
 
 function before_and_after_remove(options) {
-	var simple = $('#simple'),
+	var simple = £('#simple'),
 		one = simple.clone().removeAttr('id').insertAfter('#simple'),
 		two = one.clone().insertAfter(one),
 		all = two.clone().insertAfter(two);
@@ -81,8 +81,8 @@ test('remove and add without loop', function() {
 });
 
 function before_and_after_remove_add(options) {
-	var simple = $('#simple'),
-		simpleClone = $('#simple').clone().removeAttr('id').insertAfter('#simple');
+	var simple = £('#simple'),
+		simpleClone = £('#simple').clone().removeAttr('id').insertAfter('#simple');
 
     //move the text along as 'add' adds the new element to the add as expected.
     simpleClone.children(':eq(0)').text('2');
@@ -102,7 +102,7 @@ function before_and_after_remove_add(options) {
 test('invalidate', function() {
 	expect(6);
 	
-	var carousel = $('#simple').owlCarousel().data('owl.carousel');
+	var carousel = £('#simple').owlCarousel().data('owl.carousel');
 	
 	deepEqual(carousel.invalidate(), [], 'No invalid parts after initializing.');
 
@@ -128,7 +128,7 @@ test('invalidate', function() {
 test('destroy', function() {
 	expect(1);
 	
-	var simple = $('#simple'),
+	var simple = £('#simple'),
 		expected = simple.get(0).outerHTML.replace(/\s{2,}/g, '');
 	
 	simple.owlCarousel().owlCarousel('destroy');

@@ -74,7 +74,7 @@ function Outlayer( element, options ) {
   this.element = queryElement;
   // add jQuery
   if ( jQuery ) {
-    this.$element = jQuery( this.element );
+    this.£element = jQuery( this.element );
   }
 
   // options
@@ -475,16 +475,16 @@ proto.dispatchEvent = function( type, event, args ) {
   this.emitEvent( type, emitArgs );
 
   if ( jQuery ) {
-    // set this.$element
-    this.$element = this.$element || jQuery( this.element );
+    // set this.£element
+    this.£element = this.£element || jQuery( this.element );
     if ( event ) {
       // create jQuery event
-      var $event = jQuery.Event( event );
-      $event.type = type;
-      this.$element.trigger( $event, args );
+      var £event = jQuery.Event( event );
+      £event.type = type;
+      this.£element.trigger( £event, args );
     } else {
       // just trigger with type if no event available
-      this.$element.trigger( type, args );
+      this.£element.trigger( type, args );
     }
   }
 };

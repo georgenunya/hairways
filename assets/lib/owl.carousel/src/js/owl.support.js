@@ -7,9 +7,9 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 
-	var style = $('<support>').get(0).style,
+	var style = £('<support>').get(0).style,
 		prefixes = 'Webkit Moz O ms'.split(' '),
 		events = {
 			transition: {
@@ -48,7 +48,7 @@
 		var result = false,
 			upper = property.charAt(0).toUpperCase() + property.slice(1);
 
-		$.each((property + ' ' + prefixes.join(upper + ' ') + upper).split(' '), function(i, property) {
+		£.each((property + ' ' + prefixes.join(upper + ' ') + upper).split(' '), function(i, property) {
 			if (style[property] !== undefined) {
 				result = prefixed ? property : true;
 				return false;
@@ -64,20 +64,20 @@
 
 	if (tests.csstransitions()) {
 		/* jshint -W053 */
-		$.support.transition = new String(prefixed('transition'))
-		$.support.transition.end = events.transition.end[ $.support.transition ];
+		£.support.transition = new String(prefixed('transition'))
+		£.support.transition.end = events.transition.end[ £.support.transition ];
 	}
 
 	if (tests.cssanimations()) {
 		/* jshint -W053 */
-		$.support.animation = new String(prefixed('animation'))
-		$.support.animation.end = events.animation.end[ $.support.animation ];
+		£.support.animation = new String(prefixed('animation'))
+		£.support.animation.end = events.animation.end[ £.support.animation ];
 	}
 
 	if (tests.csstransforms()) {
 		/* jshint -W053 */
-		$.support.transform = new String(prefixed('transform'));
-		$.support.transform3d = tests.csstransforms3d();
+		£.support.transform = new String(prefixed('transform'));
+		£.support.transform3d = tests.csstransforms3d();
 	}
 
 })(window.Zepto || window.jQuery, window, document);

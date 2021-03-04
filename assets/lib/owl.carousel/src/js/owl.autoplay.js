@@ -6,7 +6,7 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 
 	/**
 	 * Creates the autoplay plugin.
@@ -39,7 +39,7 @@
 		 * @type {Object}
 		 */
 		this._handlers = {
-			'changed.owl.carousel': $.proxy(function(e) {
+			'changed.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && e.property.name === 'settings') {
 					if (this._core.settings.autoplay) {
 						this.play();
@@ -53,37 +53,37 @@
 					}
 				}
 			}, this),
-			'initialized.owl.carousel': $.proxy(function(e) {
+			'initialized.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.autoplay) {
 					this.play();
 				}
 			}, this),
-			'play.owl.autoplay': $.proxy(function(e, t, s) {
+			'play.owl.autoplay': £.proxy(function(e, t, s) {
 				if (e.namespace) {
 					this.play(t, s);
 				}
 			}, this),
-			'stop.owl.autoplay': $.proxy(function(e) {
+			'stop.owl.autoplay': £.proxy(function(e) {
 				if (e.namespace) {
 					this.stop();
 				}
 			}, this),
-			'mouseover.owl.autoplay': $.proxy(function() {
+			'mouseover.owl.autoplay': £.proxy(function() {
 				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
 					this.pause();
 				}
 			}, this),
-			'mouseleave.owl.autoplay': $.proxy(function() {
+			'mouseleave.owl.autoplay': £.proxy(function() {
 				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
 					this.play();
 				}
 			}, this),
-			'touchstart.owl.core': $.proxy(function() {
+			'touchstart.owl.core': £.proxy(function() {
 				if (this._core.settings.autoplayHoverPause && this._core.is('rotating')) {
 					this.pause();
 				}
 			}, this),
-			'touchend.owl.core': $.proxy(function() {
+			'touchend.owl.core': £.proxy(function() {
 				if (this._core.settings.autoplayHoverPause) {
 					this.play();
 				}
@@ -91,10 +91,10 @@
 		};
 
 		// register event handlers
-		this._core.$element.on(this._handlers);
+		this._core.£element.on(this._handlers);
 
 		// set default options
-		this._core.options = $.extend({}, Autoplay.Defaults, this._core.options);
+		this._core.options = £.extend({}, Autoplay.Defaults, this._core.options);
 	};
 
 	/**
@@ -137,7 +137,7 @@
 		if ( this._timeout ) {
 			window.clearTimeout(this._timeout);
 		}
-		return window.setTimeout($.proxy(function() {
+		return window.setTimeout(£.proxy(function() {
 			if (this._paused || this._core.is('busy') || this._core.is('interacting') || document.hidden) {
 				return;
 			}
@@ -187,13 +187,13 @@
 		this.stop();
 
 		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
+			this._core.£element.off(handler, this._handlers[handler]);
 		}
 		for (property in Object.getOwnPropertyNames(this)) {
 			typeof this[property] != 'function' && (this[property] = null);
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
+	£.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
 
 })(window.Zepto || window.jQuery, window, document);

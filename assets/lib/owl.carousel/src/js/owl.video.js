@@ -5,7 +5,7 @@
  * @author David Deutsch
  * @license The MIT License (MIT)
  */
-;(function($, window, document, undefined) {
+;(function(£, window, document, undefined) {
 
 	/**
 	 * Creates the video plugin.
@@ -41,47 +41,47 @@
 		 * @type {Object}
 		 */
 		this._handlers = {
-			'initialized.owl.carousel': $.proxy(function(e) {
+			'initialized.owl.carousel': £.proxy(function(e) {
 				if (e.namespace) {
 					this._core.register({ type: 'state', name: 'playing', tags: [ 'interacting' ] });
 				}
 			}, this),
-			'resize.owl.carousel': $.proxy(function(e) {
+			'resize.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.settings.video && this.isInFullScreen()) {
 					e.preventDefault();
 				}
 			}, this),
-			'refreshed.owl.carousel': $.proxy(function(e) {
+			'refreshed.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && this._core.is('resizing')) {
-					this._core.$stage.find('.cloned .owl-video-frame').remove();
+					this._core.£stage.find('.cloned .owl-video-frame').remove();
 				}
 			}, this),
-			'changed.owl.carousel': $.proxy(function(e) {
+			'changed.owl.carousel': £.proxy(function(e) {
 				if (e.namespace && e.property.name === 'position' && this._playing) {
 					this.stop();
 				}
 			}, this),
-			'prepared.owl.carousel': $.proxy(function(e) {
+			'prepared.owl.carousel': £.proxy(function(e) {
 				if (!e.namespace) {
 					return;
 				}
 
-				var $element = $(e.content).find('.owl-video');
+				var £element = £(e.content).find('.owl-video');
 
-				if ($element.length) {
-					$element.css('display', 'none');
-					this.fetch($element, $(e.content));
+				if (£element.length) {
+					£element.css('display', 'none');
+					this.fetch(£element, £(e.content));
 				}
 			}, this)
 		};
 
 		// set default options
-		this._core.options = $.extend({}, Video.Defaults, this._core.options);
+		this._core.options = £.extend({}, Video.Defaults, this._core.options);
 
 		// register event handlers
-		this._core.$element.on(this._handlers);
+		this._core.£element.on(this._handlers);
 
-		this._core.$element.on('click.owl.video', '.owl-video-play-icon', $.proxy(function(e) {
+		this._core.£element.on('click.owl.video', '.owl-video-play-icon', £.proxy(function(e) {
 			this.play(e);
 		}, this));
 	};
@@ -206,7 +206,7 @@
 			path = "//img.youtube.com/vi/" + video.id + "/hqdefault.jpg";
 			create(path);
 		} else if (video.type === 'vimeo') {
-			$.ajax({
+			£.ajax({
 				type: 'GET',
 				url: '//vimeo.com/api/v2/video/' + video.id + '.json',
 				jsonp: 'callback',
@@ -217,7 +217,7 @@
 				}
 			});
 		} else if (video.type === 'vzaar') {
-			$.ajax({
+			£.ajax({
 				type: 'GET',
 				url: '//vzaar.com/api/videos/' + video.id + '.json',
 				jsonp: 'callback',
@@ -249,11 +249,11 @@
 	 * @param {Event} event - The event arguments.
 	 */
 	Video.prototype.play = function(event) {
-		var target = $(event.target),
+		var target = £(event.target),
 			item = target.closest('.' + this._core.settings.itemClass),
 			video = this._videos[item.attr('data-video')],
 			width = video.width || '100%',
-			height = video.height || this._core.$stage.height(),
+			height = video.height || this._core.£stage.height(),
 			html;
 
 		if (this._playing) {
@@ -280,7 +280,7 @@
 				'src="//view.vzaar.com/' + video.id + '/player?autoplay=true"></iframe>';
 		}
 
-		$('<div class="owl-video-frame">' + html + '</div>').insertAfter(item.find('.owl-video'));
+		£('<div class="owl-video-frame">' + html + '</div>').insertAfter(item.find('.owl-video'));
 
 		this._playing = item.addClass('owl-video-playing');
 	};
@@ -295,7 +295,7 @@
 		var element = document.fullscreenElement || document.mozFullScreenElement ||
 				document.webkitFullscreenElement;
 
-		return element && $(element).parent().hasClass('owl-video-frame');
+		return element && £(element).parent().hasClass('owl-video-frame');
 	};
 
 	/**
@@ -304,16 +304,16 @@
 	Video.prototype.destroy = function() {
 		var handler, property;
 
-		this._core.$element.off('click.owl.video');
+		this._core.£element.off('click.owl.video');
 
 		for (handler in this._handlers) {
-			this._core.$element.off(handler, this._handlers[handler]);
+			this._core.£element.off(handler, this._handlers[handler]);
 		}
 		for (property in Object.getOwnPropertyNames(this)) {
 			typeof this[property] != 'function' && (this[property] = null);
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Video = Video;
+	£.fn.owlCarousel.Constructor.Plugins.Video = Video;
 
 })(window.Zepto || window.jQuery, window, document);

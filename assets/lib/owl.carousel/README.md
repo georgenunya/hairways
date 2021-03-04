@@ -25,7 +25,7 @@ Load the required stylesheet and JS:
 
 ```js
 import 'owl.carousel/dist/assets/owl.carousel.css';
-import $ from 'jquery';
+import £ from 'jquery';
 import 'imports?jQuery=jquery!owl.carousel';
 ```
 
@@ -34,15 +34,20 @@ import 'imports?jQuery=jquery!owl.carousel';
 Put the required stylesheet at the [top](https://developer.yahoo.com/performance/rules.html#css_top) of your markup:
 
 ```html
-<link rel="stylesheet" href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
+<link
+  rel="stylesheet"
+  href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
+/>
 ```
 
 ```html
-<link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.min.css" />
+<link
+  rel="stylesheet"
+  href="/bower_components/owl.carousel/dist/assets/owl.carousel.min.css"
+/>
 ```
 
 **NOTE:** If you want to use the default navigation styles, you will also need to include `owl.theme.default.css`.
-
 
 Put the script at the [bottom](https://developer.yahoo.com/performance/rules.html#js_bottom) of your markup right after jQuery:
 
@@ -62,23 +67,23 @@ Wrap your items (`div`, `a`, `img`, `span`, `li` etc.) with a container element 
 
 ```html
 <div class="owl-carousel owl-theme">
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
+  <div>Your Content</div>
+  <div>Your Content</div>
+  <div>Your Content</div>
+  <div>Your Content</div>
+  <div>Your Content</div>
+  <div>Your Content</div>
+  <div>Your Content</div>
 </div>
 ```
-**NOTE:** The `owl-theme` class is optional, but without it, you will need to style navigation features on your own.
 
+**NOTE:** The `owl-theme` class is optional, but without it, you will need to style navigation features on your own.
 
 Call the [plugin](https://learn.jquery.com/plugins/) function and your carousel is ready.
 
 ```javascript
-$(document).ready(function(){
-  $('.owl-carousel').owlCarousel();
+£(document).ready(function(){
+  £('.owl-carousel').owlCarousel();
 });
 ```
 
@@ -90,10 +95,10 @@ The documentation, included in this repo in the root directory, is built with [A
 
 This package comes with [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/). The following tasks are available:
 
-  * `default` compiles the CSS and JS into `/dist` and builds the doc.
-  * `dist` compiles the CSS and JS into `/dist` only.
-  * `watch` watches source files and builds them automatically whenever you save.
-  * `test` runs [JSHint](http://www.jshint.com/) and [QUnit](http://qunitjs.com/) tests headlessly in [PhantomJS](http://phantomjs.org/).
+- `default` compiles the CSS and JS into `/dist` and builds the doc.
+- `dist` compiles the CSS and JS into `/dist` only.
+- `watch` watches source files and builds them automatically whenever you save.
+- `test` runs [JSHint](http://www.jshint.com/) and [QUnit](http://qunitjs.com/) tests headlessly in [PhantomJS](http://phantomjs.org/).
 
 To define which plugins are build into the distribution just edit `/_config.json` to fit your needs.
 

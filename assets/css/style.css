@@ -9,7 +9,7 @@ html {
 
 body {
   background: #fff;
-  font: 400 12px/1.8 "Open Sans", sans-serif;
+  font: 400 12px/1.8 "OpenSans", sans-serif;
   color: #666;
   -webkit-font-smoothing: antialiased;
 }
@@ -1256,8 +1256,8 @@ General Styles - Owlcarousel
 .navbar-custom {
   background-image: linear-gradient(
     to right,
-    rgba(201, 149, 194, 0.9),
-    rgba(243, 50, 217, 0.9)
+    rgba(255, 255, 255, 0.9),
+    #2a166a
   );
   border: 0;
   border-radius: 0;

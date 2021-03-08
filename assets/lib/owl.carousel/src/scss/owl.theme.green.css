@@ -7,20 +7,20 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.owl-theme .owl-nav [class*='owl-'] {
-  color: #FFF;
+.owl-theme .owl-nav [class*="owl-"] {
+  color: #fff;
   font-size: 14px;
   margin: 5px;
   padding: 4px 7px;
-  background: #D6D6D6;
+  background: #d6d6d6;
   display: inline-block;
   cursor: pointer;
   border-radius: 3px;
 }
 
-.owl-theme .owl-nav [class*='owl-']:hover {
-  background: #4DC7A0;
-  color: #FFF;
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background: #4dc7a0;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -48,7 +48,7 @@
   width: 10px;
   height: 10px;
   margin: 5px 7px;
-  background: #D6D6D6;
+  background: #d6d6d6;
   display: block;
   -webkit-backface-visibility: visible;
   -webkit-transition: opacity 200ms ease;
@@ -57,6 +57,6 @@
 }
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-  background: #4DC7A0;
+  background: #4dc7a0;
 }
 /*# sourceMappingURL=owl.theme.green.css.map */

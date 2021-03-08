@@ -292,8 +292,18 @@ a,
   /* Chrome10+,Safari5.1+ */
   /* Opera 11.10+ */
   /* IE10+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(25%, rgba(40, 115, 113, 0.57)), color-stop(75%, rgba(115, 54, 31, 0.67)));
-  background: linear-gradient(to bottom, rgba(40, 115, 113, 0.57) 25%, rgba(115, 54, 31, 0.67) 75%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(25%, rgba(40, 115, 113, 0.57)),
+    color-stop(75%, rgba(115, 54, 31, 0.67))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(40, 115, 113, 0.57) 25%,
+    rgba(115, 54, 31, 0.67) 75%
+  );
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#000000',GradientType=0 );
   /* IE6-8 */
@@ -821,14 +831,14 @@ a,
   letter-spacing: 2px;
   font-size: 11px;
   height: 33px;
-  border: 1px solid #EAEAEA;
+  border: 1px solid #eaeaea;
   border-radius: 2px;
   -webkit-transition: all 0.4s ease-in-out 0s;
   transition: all 0.4s ease-in-out 0s;
 }
 
 .form-control:focus {
-  border-color: #CACACA;
+  border-color: #cacaca;
 }
 
 /* Forms size */
@@ -838,7 +848,8 @@ a,
   font-size: 13px;
 }
 
-.input-sm, .form-horizontal .form-group-sm .form-control {
+.input-sm,
+.form-horizontal .form-group-sm .form-control {
   height: 29px;
   font-size: 10px;
 }
@@ -862,7 +873,8 @@ a {
   color: #111;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: none;
   color: #aaa;
   outline: 0;
@@ -872,16 +884,25 @@ a:hover, a:focus {
   color: #aaa;
 }
 
-.bg-dark a:hover, .bg-dark a:focus {
+.bg-dark a:hover,
+.bg-dark a:focus {
   color: #fff;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.4;
   font-weight: 400;
 }
 
-p, ol, ul, blockquote {
+p,
+ol,
+ul,
+blockquote {
   margin: 0 0 20px;
 }
 
@@ -976,7 +997,7 @@ blockquote {
 
 .free-trial {
   background-color: rgba(88, 20, 158, 0.9);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .free-trial .color-golden {
@@ -1496,8 +1517,20 @@ General Styles - Owlcarousel
 /* Landing Page Header */
 .landing-header:before {
   position: absolute;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(95%, rgba(119, 47, 109, 0.52)), to(rgba(115, 35, 105, 0.58)));
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(119, 47, 109, 0.52) 95%, rgba(115, 35, 105, 0.58) 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(255, 255, 255, 0)),
+    color-stop(95%, rgba(119, 47, 109, 0.52)),
+    to(rgba(115, 35, 105, 0.58))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(119, 47, 109, 0.52) 95%,
+    rgba(115, 35, 105, 0.58) 100%
+  );
   content: " ";
   height: 100%;
   width: 100%;
@@ -1668,7 +1701,7 @@ Google map
 }
 
 .team-social a:hover {
-  color: #FFF;
+  color: #fff;
 }
 
 .team-descr {
@@ -1730,7 +1763,7 @@ Google map
 }
 
 .price-table:hover {
-  border-color: #CACACA;
+  border-color: #cacaca;
 }
 
 .price-table.best {
@@ -1990,7 +2023,11 @@ Google map
 
 .works-grid.works-hover-g .work-item:hover .work-image:after {
   background: #6fe29e;
-  background: linear-gradient(135deg, rgba(111, 226, 158, 0.8) 0%, rgba(91, 218, 209, 0.8) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(111, 226, 158, 0.8) 0%,
+    rgba(91, 218, 209, 0.8) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6fe29e', endColorstr='#5bdad1',GradientType=1 );
   opacity: 1;
 }
@@ -2246,7 +2283,7 @@ Google map
 }
 
 .pagination a.active {
-  border-color: #CACACA;
+  border-color: #cacaca;
 }
 
 /*--------------------------------------------------------------
@@ -2477,7 +2514,7 @@ Google map
 	Client
 --------------------------------------------------------------*/
 .client-logo {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .client-logo:hover {
@@ -2553,7 +2590,7 @@ Google map
 	Exclusive products
 ------------------------------------------------------------------- */
 .ex-product {
-  opacity: .7;
+  opacity: 0.7;
   -webkit-transition: all 0.4s ease-in-out 0s;
   transition: all 0.4s ease-in-out 0s;
 }
@@ -2621,7 +2658,7 @@ Google map
 .showcase-page .content-box .content-box-image {
   border-radius: 6px;
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   overflow: hidden;
   -webkit-box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.15);
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.15);
@@ -2635,7 +2672,7 @@ Google map
   transform: translate3d(0, -10px, 0);
   -webkit-transform: translate3d(0, -10px, 0);
   -webkit-box-shadow: 0 23px 40px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 23px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 23px 40px rgba(0, 0, 0, 0.2);
 }
 
 /*--------------------------------------------------------------
@@ -2659,11 +2696,22 @@ Google map
   margin-bottom: 0;
 }
 
-.documentation-page li.L0, .documentation-page li.L1, .documentation-page li.L2, .documentation-page li.L3, .documentation-page li.L5, .documentation-page li.L6, .documentation-page li.L7, .documentation-page li.L8 {
+.documentation-page li.L0,
+.documentation-page li.L1,
+.documentation-page li.L2,
+.documentation-page li.L3,
+.documentation-page li.L5,
+.documentation-page li.L6,
+.documentation-page li.L7,
+.documentation-page li.L8 {
   list-style-type: none;
 }
 
-.documentation-page li.L1, .documentation-page li.L3, .documentation-page li.L5, .documentation-page li.L7, .documentation-page li.L9 {
+.documentation-page li.L1,
+.documentation-page li.L3,
+.documentation-page li.L5,
+.documentation-page li.L7,
+.documentation-page li.L9 {
   background: #eee;
 }
 
@@ -2675,7 +2723,9 @@ Google map
   color: #066;
 }
 
-.documentation-page .pun, .documentation-page .opn, .documentation-page .clo {
+.documentation-page .pun,
+.documentation-page .opn,
+.documentation-page .clo {
   color: #660;
 }
 
@@ -2683,24 +2733,29 @@ Google map
   color: red;
 }
 
-.documentation-page .str, .documentation-page .atv {
+.documentation-page .str,
+.documentation-page .atv {
   color: #080;
 }
 
-.documentation-page .kwd, .documentation-page .tag {
+.documentation-page .kwd,
+.documentation-page .tag {
   color: #008;
 }
 
-.documentation-page .typ, .documentation-page .atn, .documentation-page .dec, .documentation-page .var {
+.documentation-page .typ,
+.documentation-page .atn,
+.documentation-page .dec,
+.documentation-page .var {
   color: #606;
 }
 
 .documentation-page a {
-  color: #19B5FE;
+  color: #19b5fe;
 }
 
 .documentation-page a:hover {
-  color: #1C92C9;
+  color: #1c92c9;
 }
 
 /*--------------------------------------------------------------
@@ -2802,11 +2857,11 @@ Google map
     padding: 10px 25px;
   }
   .navbar-custom
-.navbar-nav
-.open
-.dropdown-menu
-.dropdown-menu
-.dropdown-header,
+    .navbar-nav
+    .open
+    .dropdown-menu
+    .dropdown-menu
+    .dropdown-header,
   .navbar-custom .navbar-nav .open .dropdown-menu .dropdown-menu > li > a {
     padding: 10px 35px;
   }

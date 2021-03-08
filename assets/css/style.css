@@ -1256,7 +1256,7 @@ General Styles - Owlcarousel
 .navbar-custom {
   background-image: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0.9),
+    rgba(196, 196, 196, 0.9),
     #2a166a
   );
   border: 0;
@@ -1274,7 +1274,7 @@ General Styles - Owlcarousel
 }
 
 .navbar-custom .dropdown-menu {
-  background: rgba(201, 149, 194, 0.9);
+  background: #2a166a;
   border-radius: 0;
   border: 0;
   padding: 0;

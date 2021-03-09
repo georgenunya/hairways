@@ -12,6 +12,7 @@ body {
   font: 400 12px/1.8 "OpenSans", sans-serif;
   color: #666;
   -webkit-font-smoothing: antialiased;
+  max-width: 100%;
 }
 
 img {
@@ -38,6 +39,10 @@ iframe {
 .leftauto {
   right: 0 !important;
   left: auto !important;
+}
+
+.navbar-fixed-top {
+  max-width: 100%;
 }
 
 /* Transition elsements */
@@ -152,6 +157,7 @@ a,
 /* Sections */
 .navbar-custom + .main {
   margin-top: 50px;
+  max-width: 100%;
 }
 
 .main {
@@ -1400,6 +1406,7 @@ General Styles - Owlcarousel
   letter-spacing: 3px;
   font-size: 11px;
   transition: background, padding 0.4s ease-in-out 0s;
+  max-width: 100%;
 }
 
 .navbar a {
@@ -1478,7 +1485,7 @@ General Styles - Owlcarousel
 }
 
 .navbar-custom .navbar-toggle .icon-bar {
-  background: #fff;
+  background: rgb(255, 255, 255);
 }
 
 .dropdown-menu {
@@ -2880,6 +2887,7 @@ Google map
     background: transparent;
     padding-bottom: 15px;
     padding-top: 15px;
+    max-width: 100%;
   }
   .navbar-custom .dropdown-menu {
     position: absolute;
@@ -2925,6 +2933,7 @@ Google map
   /* Navbar */
   .navbar-custom {
     letter-spacing: 1px;
+    max-width: 100%;
   }
 }
 
@@ -2932,6 +2941,7 @@ Google map
   /* Navbar */
   .navbar-custom {
     letter-spacing: 0;
+    max-width: 100%;
   }
   /* Headers */
   .hairways-title-size-3 {

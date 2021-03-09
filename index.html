@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--  
     Document Title
     =============================================
@@ -66,8 +66,11 @@
       <nav class="navbar navbar-custom navbar-fixed-top navbar-transparent">
         <div class="container">
           <div class="navbar-header">
+
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="index.html"> <img src="assets/images/logo.png" alt="Client Logo"/></a>
+
+            <a class="navbar-brand" href="#">Hairways</a>
+            
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -103,7 +106,7 @@
                   </li>
                 </ul>
               </li>
-              
+
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Opening Hours</a>
                 <ul class="dropdown-menu" role="menu">
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Stores</a>
@@ -113,7 +116,7 @@
                       <li><a href="colch.html">Colchester</a></li>
                     </ul>
                   </li>
-				        </ul>
+                </ul>
               </li>
 
               
@@ -136,6 +139,15 @@
                   <li><a href="legal/covid.pdf">COVID Guidelines</a></li>
                 </ul>
               </li>
+
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">My account</a>
+                <ul class="dropdown-menu">
+                  <li><a href="login_register.html">Login</a></li>
+                  <li><a href="login_register.html">Sign Up</a></li>
+                </ul>
+              </li>
+
+
             </ul>
           </div>
         </div>
@@ -166,46 +178,6 @@
           </ul>
         </div>
       </div>
-
-      <div class="form-wrap">
-        <div class="tabs">
-          <h3 class="signup-tab"><a class="active" href="#signup-tab-content">Customer Sign Up</a></h3>
-          <h3 class="login-tab"><a href="#login-tab-content">Trade Login</a></h3>
-        </div><!--.tabs-->
-    
-        <div class="tabs-content">
-          <div id="signup-tab-content" class="active">
-            <form class="signup-form" action="" method="post">
-              <input type="email" class="input" id="user_email" autocomplete="off" placeholder="Email">
-              <input type="text" class="input" id="user_name" autocomplete="off" placeholder="Username">
-              <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-              <input type="submit" class="button" value="Sign Up">
-            </form>
-            
-            <!--.login-form-->
-
-
-            <div class="help-text">
-              <p>By signing up, you agree to our</p>
-              <p><a href="login_register.html">Terms of service</a></p>
-            </div><!--.help-text-->
-          </div><!--.signup-tab-content-->
-    
-          <div id="login-tab-content">
-            <form class="login-form" action="" method="post">
-              <input type="text" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
-              <input type="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-              <input type="checkbox" class="checkbox" id="remember_me">
-              <label for="remember_me">Remember me</label>
-    
-              <input type="submit" class="button" value="Login">
-            </form><!--.login-form-->
-            <div class="help-text">
-              <p><a href="login_register.html">Click me to view dummy account</a></p>
-            </div><!--.help-text-->
-          </div><!--.login-tab-content-->
-        </div><!--.tabs-content-->
-      </div><!--.form-wrap-->
 
       <div class="main">
         <section class="module-small">
@@ -267,7 +239,6 @@
               </div>
             </div>
             <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=MVEnlkt51PE', containment:'.module-video', startAt:0, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:0}">
-            <img src="assets/images/shop/acrewe.png" alt="Fallback Image">
             </div>
           </section>
 

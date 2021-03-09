@@ -230,6 +230,9 @@ console.log(
          * Navbar hover dropdown on desctop
          /* ---------------------------------------------- */
 
+
+
+
     function hoverDropdown(width, mobileTest) {
       if (width > 767 && mobileTest !== true) {
         $(

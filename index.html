@@ -237,8 +237,15 @@
                 </div>
               </div>
             </div>
+
             <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=MVEnlkt51PE', containment:'.module-video', startAt:0, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:0}">
             </div>
+
+            <video autoplay loop muted playsinline>
+              <source src={videoURL:'https://www.youtube.com/watch?v=MVEnlkt51PE', containment:'.module-video', startAt:0, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:0}fallback(parentNode)>
+              <img src="assets/images/shop/slider1.png">
+            </video>
+
           </section>
 
           <!-- start of section-->

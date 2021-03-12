@@ -242,8 +242,9 @@
             </div>
 
             <video autoplay loop muted playsinline>
-              <source src={videoURL:'https://www.youtube.com/watch?v=MVEnlkt51PE', containment:'.module-video', startAt:0, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:0}fallback(parentNode)>
-              <img src="assets/images/shop/slider1.png">
+              <source src="https://www.youtube.com/watch?v=MVEnlkt51PE">
+              <source src="https://www.youtube.com/watch?v=MVEnlkt51PE" onerror="fallback(parentNode)">
+              <img src="image.gif">
             </video>
 
           </section>

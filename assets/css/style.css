@@ -40,7 +40,7 @@ iframe {
   margin-bottom: 100px;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 50vh;
   font-family: inherit;
   font-weight: 200;
   font-size: 1em;

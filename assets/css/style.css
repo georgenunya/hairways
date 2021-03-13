@@ -35,15 +35,10 @@ iframe {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: white;
   margin-bottom: 100px;
   position: relative;
   overflow: hidden;
-  min-height: 50vh;
-  font-family: inherit;
-  font-weight: 200;
-  font-size: 1em;
+  min-height: 35vh;
 }
 
 .video-bg1 {
@@ -53,6 +48,8 @@ iframe {
   transform: translate(-50%, -50%);
   min-width: 100%;
   min-height: 100%;
+  width: auto;
+  height: auto;
 }
 
 .align-left {

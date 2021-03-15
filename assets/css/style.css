@@ -31,25 +31,12 @@ iframe {
   text-align: center;
 }
 
-.video3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 100px;
-  position: relative;
-  overflow: hidden;
-  min-height: 35vh;
+video {
+  width: 100%;
+  max-height: 50%;
 }
 
-.video-bg1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-}
+
 
 .align-left {
   text-align: left !important;

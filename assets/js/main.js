@@ -154,7 +154,7 @@ console.log(
         prevText: "",
         nextText: "",
         before: function (slider) {
-          $(".hairways-caption")
+          $(".Nunya-caption")
             .fadeOut()
             .animate(
               { top: "-80px" },
@@ -164,7 +164,7 @@ console.log(
           slider.slides.eq(slider.animatingTo).delay(500);
         },
         after: function (slider) {
-          $(".hairways-caption")
+          $(".Nunya-caption")
             .fadeIn()
             .animate(
               { top: "0" },
@@ -884,7 +884,7 @@ console.log(
       var marker = new google.maps.Marker({
         position: mkr,
         icon: image,
-        title: "hairways",
+        title: "Nunya",
         infoWindow: {
           content:
             "<p><strong>Rival</strong><br/>121 Somewhere Ave, Suite 123<br/>P: (123) 456-7890<br/>Australia</p>",
